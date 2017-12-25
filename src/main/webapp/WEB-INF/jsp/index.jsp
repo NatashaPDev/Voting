@@ -8,7 +8,7 @@
 <body>
 <section>
     <form method="post" action="users">
-        <b>Meals of&nbsp;</b>
+        <b>Dishes of&nbsp;</b>
         <select name="userId">
     <option value="100000" selected>User</option>
     <option value="100001">Admin</option>
@@ -17,7 +17,7 @@
 </form>
 <ul>
     <li><a href="users">Users</a></li>
-    <li><a href="meals">Meals</a></li>
+    <li><a href="dishes">Dishes</a></li>
 </ul>
 </section>
 

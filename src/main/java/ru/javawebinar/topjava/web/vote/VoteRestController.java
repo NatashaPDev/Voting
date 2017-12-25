@@ -5,14 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import ru.javawebinar.topjava.AuthorizedUser;
-import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.Dish;
 import ru.javawebinar.topjava.model.Vote;
-import ru.javawebinar.topjava.service.MealService;
+import ru.javawebinar.topjava.service.DishService;
 import ru.javawebinar.topjava.service.VoteService;
-import ru.javawebinar.topjava.to.MealWithExceed;
+import ru.javawebinar.topjava.to.DishWithExceed;
 import ru.javawebinar.topjava.to.VoteTO;
 import ru.javawebinar.topjava.util.DateTimeUtil;
-import ru.javawebinar.topjava.util.MealsUtil;
+import ru.javawebinar.topjava.util.DishesUtil;
 import ru.javawebinar.topjava.util.VotesUtil;
 
 import java.time.LocalDate;
@@ -69,18 +69,18 @@ public class VoteRestController {
      * <li>by time for every date</li>
      * </ol>
      */
-//    public List<MealWithExceed> getBetween(LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime) {
+//    public List<DishWithExceed> getBetween(LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime) {
 //        int userId = AuthorizedUser.id();
 //        log.info("getBetween dates({} - {}) time({} - {}) for user {}", startDate, endDate, startTime, endTime, userId);
 //
-//        List<Meal> mealsDateFiltered = service.getBetweenDates(
+//        List<Dish> dishesDateFiltered = service.getBetweenDates(
 //                startDate != null ? startDate : DateTimeUtil.MIN_DATE,
 //                endDate != null ? endDate : DateTimeUtil.MAX_DATE, userId);
 //
-//        return MealsUtil.getFilteredWithExceeded(mealsDateFiltered,
+//        return DishesUtil.getFilteredWithExceeded(dishesDateFiltered,
 //                startTime != null ? startTime : LocalTime.MIN,
 //                endTime != null ? endTime : LocalTime.MAX,
-//                AuthorizedUser.getCaloriesPerDay()
+//                AuthorizedUser.getPricePerDay()
 //        );
 //    }
 }

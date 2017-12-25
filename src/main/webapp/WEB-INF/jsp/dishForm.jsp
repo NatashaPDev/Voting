@@ -8,26 +8,26 @@
 
 
 <section>
-    <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.Meal" scope="request"/>
-    <h3>Meal</h3>
+    <jsp:useBean id="dish" type="ru.javawebinar.topjava.model.Dish" scope="request"/>
+    <h3>Dish</h3>
     <hr>
     <form method="post" action="update">
-        <input type="hidden" name="id" value="${meal.id}">
+        <input type="hidden" name="id" value="${dish.id}">
         <dl>
             <dt>Date:</dt>
-            <dd><input type="datetime-local" value="${meal.dateTime}" name="dateTime" required></dd>
+            <dd><input type="datetime-local" value="${dish.dateTime}" name="dateTime" required></dd>
         </dl>
         <dl>
             <dt>Description:</dt>
-            <dd><input type="text" value="${meal.description}" size=40 name="description" required></dd>
+            <dd><input type="text" value="${dish.description}" size=40 name="description" required></dd>
         </dl>
         <dl>
             <dt>Restaurant:</dt>
-            <dd><input type="text" value="${meal.restaurant}" size=40 name="restaurant" required></dd>
+            <dd><input type="text" value="${dish.restaurant}" size=40 name="restaurant" required></dd>
         </dl>
         <dl>
             <dt>Price:</dt>
-            <dd><input type="number" value="${meal.calories}" name="calories" required></dd>
+            <dd><input type="number" value="${dish.price}" name="price" required></dd>
         </dl>
         <button type="submit">Save</button>
         <button onclick="window.history.back()" type="button">Cancel</button>

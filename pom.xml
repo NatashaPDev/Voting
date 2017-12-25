@@ -2,14 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.javawebinar</groupId>
-    <artifactId>topjava</artifactId>
+    <groupId>ru.natashapetrenko</groupId>
+    <artifactId>voting</artifactId>
     <packaging>war</packaging>
 
     <version>1.0-SNAPSHOT</version>
 
-    <name>Calories Management</name>
-    <url>http://topjava.herokuapp.com/</url>
+    <name>Voting</name>
+    <url></url>
 
     <properties>
         <java.version>1.8</java.version>

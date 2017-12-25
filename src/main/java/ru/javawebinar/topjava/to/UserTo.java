@@ -22,19 +22,14 @@ public class UserTo extends BaseTo implements Serializable {
     @Size(min = 5, max = 32, message = "length must between 5 and 32 characters")
     private String password;
 
-    @Range(min = 10, max = 10000)
-    @NotNull
-    private Integer caloriesPerDay = UserUtil.DEFAULT_CALORIES_PER_DAY;
-
     public UserTo() {
     }
 
-    public UserTo(Integer id, String name, String email, String password, int caloriesPerDay) {
+    public UserTo(Integer id, String name, String email, String password) {
         super(id);
         this.name = name;
         this.email = email;
         this.password = password;
-        this.caloriesPerDay = caloriesPerDay;
     }
 
     public String getPassword() {
@@ -61,17 +56,12 @@ public class UserTo extends BaseTo implements Serializable {
         this.email = email;
     }
 
-    public Integer getCaloriesPerDay() {
-        return caloriesPerDay;
-    }
-
     @Override
     public String toString() {
         return "UserTo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", caloriesPerDay='" + caloriesPerDay + '\'' +
                 '}';
     }
 }

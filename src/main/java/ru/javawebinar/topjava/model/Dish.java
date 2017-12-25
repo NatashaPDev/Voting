@@ -12,19 +12,19 @@ import java.time.LocalTime;
 
 @SuppressWarnings("JpaQlInspection")
 @NamedQueries({
-        @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m WHERE m.user.id=:userId ORDER BY m.dateTime DESC"),
-        @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:userId"),
-        @NamedQuery(name = Meal.GET_BETWEEN, query = "SELECT m FROM Meal m " +
+        @NamedQuery(name = Dish.ALL_SORTED, query = "SELECT m FROM Dish m WHERE m.user.id=:userId ORDER BY m.dateTime DESC"),
+        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish m WHERE m.id=:id AND m.user.id=:userId"),
+        @NamedQuery(name = Dish.GET_BETWEEN, query = "SELECT m FROM Dish m " +
                 "WHERE m.user.id=:userId AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime DESC"),
-//        @NamedQuery(name = Meal.UPDATE, query = "UPDATE Meal m SET m.dateTime = :datetime, m.calories= :calories," +
+//        @NamedQuery(name = Dish.UPDATE, query = "UPDATE Dish m SET m.dateTime = :datetime, m.price= :price," +
 //                "m.description=:desc where m.id=:id and m.user.id=:userId")
 })
 @Entity
-@Table(name = "meals", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"}, name = "meals_unique_user_datetime_idx")})
-public class Meal extends AbstractBaseEntity {
-    public static final String ALL_SORTED = "Meal.getAll";
-    public static final String DELETE = "Meal.delete";
-    public static final String GET_BETWEEN = "Meal.getBetween";
+@Table(name = "dishes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"}, name = "dishes_unique_user_datetime_idx")})
+public class Dish extends AbstractBaseEntity {
+    public static final String ALL_SORTED = "Dish.getAll";
+    public static final String DELETE = "Dish.delete";
+    public static final String GET_BETWEEN = "Dish.getBetween";
 
     @Column(name = "date_time", nullable = false)
     @NotNull
@@ -34,8 +34,8 @@ public class Meal extends AbstractBaseEntity {
     @NotBlank
     private String description;
 
-    @Column(name = "calories", nullable = false)
-    private int calories;
+    @Column(name = "price", nullable = false)
+    private int price;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -46,18 +46,18 @@ public class Meal extends AbstractBaseEntity {
     @NotBlank
     private String restaurant;
 
-    public Meal() {
+    public Dish() {
     }
 
-    public Meal(LocalDateTime dateTime, String description, int calories, String restaurant) {
-        this(null, dateTime, description, calories, restaurant);
+    public Dish(LocalDateTime dateTime, String description, int price, String restaurant) {
+        this(null, dateTime, description, price, restaurant);
     }
 
-    public Meal(Integer id, LocalDateTime dateTime, String description, int calories, String restaurant) {
+    public Dish(Integer id, LocalDateTime dateTime, String description, int price, String restaurant) {
         super(id);
         this.dateTime = dateTime;
         this.description = description;
-        this.calories = calories;
+        this.price = price;
         this.restaurant = restaurant;
     }
 
@@ -69,8 +69,8 @@ public class Meal extends AbstractBaseEntity {
         return description;
     }
 
-    public int getCalories() {
-        return calories;
+    public int getPrice() {
+        return price;
     }
 
     public LocalDate getDate() {
@@ -89,8 +89,8 @@ public class Meal extends AbstractBaseEntity {
         this.description = description;
     }
 
-    public void setCalories(int calories) {
-        this.calories = calories;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public User getUser() {
@@ -111,11 +111,11 @@ public class Meal extends AbstractBaseEntity {
 
     @Override
     public String toString() {
-        return "Meal{" +
+        return "Dish{" +
                 "id=" + id +
                 ", dateTime=" + dateTime +
                 ", description='" + description + '\'' +
-                ", calories=" + calories +
+                ", price=" + price +
                 '}';
     }
 }

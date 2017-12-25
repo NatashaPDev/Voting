@@ -27,9 +27,9 @@
             <jsp:useBean id="vote" scope="page" type="ru.javawebinar.topjava.to.VoteTO"/>
             <tr >
                 <td>
-                        <%--${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}--%>
-                        <%--<%=TimeUtil.toString(meal.getDateTime())%>--%>
-                        <%--${fn:replace(meal.dateTime, 'T', ' ')}--%>
+                        <%--${dish.dateTime.toLocalDate()} ${dish.dateTime.toLocalTime()}--%>
+                        <%--<%=TimeUtil.toString(dish.getDateTime())%>--%>
+                        <%--${fn:replace(dish.dateTime, 'T', ' ')}--%>
                         ${fn:formatDateTime(vote.dateTime)}
                 </td>
                 <td>${vote.restaurant}</td>

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.Dish;
 import ru.javawebinar.topjava.model.Vote;
 
 import java.time.LocalDateTime;
@@ -26,6 +26,6 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     List<Vote> getAll(@Param("userId") int userId);
 
 //    @SuppressWarnings("JpaQlInspection")
-//    @Query("SELECT m from Meal m WHERE m.user.id=:userId AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime DESC")
-//    List<Meal> getBetween(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("userId") int userId);
+//    @Query("SELECT m from Dish m WHERE m.user.id=:userId AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime DESC")
+//    List<Dish> getBetween(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("userId") int userId);
 }

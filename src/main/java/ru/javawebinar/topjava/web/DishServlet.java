@@ -2,8 +2,8 @@ package ru.javawebinar.topjava.web;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.web.meal.MealRestController;
+import ru.javawebinar.topjava.model.Dish;
+import ru.javawebinar.topjava.web.dish.DishRestController;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -20,16 +20,16 @@ import java.util.Objects;
 import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalDate;
 import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalTime;
 
-public class MealServlet extends HttpServlet {
+public class DishServlet extends HttpServlet {
 
     private ConfigurableApplicationContext springContext;
-    private MealRestController mealController;
+    private DishRestController dishController;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
-        mealController = springContext.getBean(MealRestController.class);
+        dishController = springContext.getBean(DishRestController.class);
     }
 
     @Override
@@ -43,26 +43,26 @@ public class MealServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
-            Meal meal = new Meal(
+            Dish dish = new Dish(
                     LocalDateTime.parse(request.getParameter("dateTime")),
                     request.getParameter("description"),
-                    Integer.parseInt(request.getParameter("calories")),
+                    Integer.parseInt(request.getParameter("price")),
                     request.getParameter("restaurant"));
 
             if (request.getParameter("id").isEmpty()) {
-                mealController.create(meal);
+                dishController.create(dish);
             } else {
-                mealController.update(meal, getId(request));
+                dishController.update(dish, getId(request));
             }
-            response.sendRedirect("meals");
+            response.sendRedirect("dishes");
 
         } else if ("filter".equals(action)) {
             LocalDate startDate = parseLocalDate(request.getParameter("startDate"));
             LocalDate endDate = parseLocalDate(request.getParameter("endDate"));
             LocalTime startTime = parseLocalTime(request.getParameter("startTime"));
             LocalTime endTime = parseLocalTime(request.getParameter("endTime"));
-            request.setAttribute("meals", mealController.getBetween(startDate, startTime, endDate, endTime));
-            request.getRequestDispatcher("/meals.jsp").forward(request, response);
+            request.setAttribute("dishes", dishController.getBetween(startDate, startTime, endDate, endTime));
+            request.getRequestDispatcher("/dishes.jsp").forward(request, response);
         }
     }
 
@@ -73,21 +73,21 @@ public class MealServlet extends HttpServlet {
         switch (action == null ? "all" : action) {
             case "delete":
                 int id = getId(request);
-                mealController.delete(id);
-                response.sendRedirect("meals");
+                dishController.delete(id);
+                response.sendRedirect("dishes");
                 break;
             case "create":
             case "update":
-                final Meal meal = "create".equals(action) ?
-                        new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000, "") :
-                        mealController.get(getId(request));
-                request.setAttribute("meal", meal);
-                request.getRequestDispatcher("/mealForm.jsp").forward(request, response);
+                final Dish dish = "create".equals(action) ?
+                        new Dish(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000, "") :
+                        dishController.get(getId(request));
+                request.setAttribute("dish", dish);
+                request.getRequestDispatcher("/dishForm.jsp").forward(request, response);
                 break;
             case "all":
             default:
-                request.setAttribute("meals", mealController.getAll());
-                request.getRequestDispatcher("/meals.jsp").forward(request, response);
+                request.setAttribute("dishes", dishController.getAll());
+                request.getRequestDispatcher("/dishes.jsp").forward(request, response);
                 break;
         }
     }

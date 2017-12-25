@@ -6,18 +6,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.javawebinar.topjava.AuthorizedUser;
-import ru.javawebinar.topjava.service.MealService;
-import ru.javawebinar.topjava.util.MealsUtil;
+import ru.javawebinar.topjava.service.DishService;
+import ru.javawebinar.topjava.util.DishesUtil;
 
 @Controller
 public class RootController {
 
     @Autowired
-    private MealService mealService;
+    private DishService dishService;
 
     @GetMapping("/")
     public String root() {
-        return "redirect:meals";
+        return "redirect:dishes";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -31,10 +31,10 @@ public class RootController {
         return "login";
     }
 
-    @GetMapping("/meals")
-    public String meals(Model model) {
-        model.addAttribute("meals",
-                MealsUtil.getWithExceeded(mealService.getAll(AuthorizedUser.id()), AuthorizedUser.getCaloriesPerDay()));
-        return "meals";
+    @GetMapping("/dishes")
+    public String dishes(Model model) {
+        model.addAttribute("dishes",
+                DishesUtil.getWithExceeded(dishService.getAll(AuthorizedUser.id())));
+        return "dishes";
     }
 }

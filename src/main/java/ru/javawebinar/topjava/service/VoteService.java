@@ -1,6 +1,6 @@
 package ru.javawebinar.topjava.service;
 
-import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.Dish;
 import ru.javawebinar.topjava.model.Vote;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
@@ -18,11 +18,11 @@ public interface VoteService {
 //        return getBetweenDateTimes(LocalDateTime.of(startDate, LocalTime.MIN), LocalDateTime.of(endDate, LocalTime.MAX), userId);
 //    }
 
-    //List<Meal> getBetweenDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId);
+    //List<Dish> getBetweenDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId);
 
     List<Vote> getAll(int userId);
 
-    Vote update(Vote meal, int userId) throws NotFoundException;
+    Vote update(Vote dish, int userId) throws NotFoundException;
 
-    Vote create(Vote meal, int userId);
+    Vote create(Vote dish, int userId);
 }

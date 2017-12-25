@@ -14,9 +14,9 @@ import java.time.LocalTime;
 @NamedQueries({
         @NamedQuery(name = Vote.ALL_SORTED, query = "SELECT m FROM Vote m WHERE m.user.id=:userId ORDER BY m.dateTime DESC"),
         @NamedQuery(name = Vote.DELETE, query = "DELETE FROM Vote m WHERE m.id=:id AND m.user.id=:userId"),
-//        @NamedQuery(name = Meal.GET_BETWEEN, query = "SELECT m FROM Meal m " +
+//        @NamedQuery(name = Dish.GET_BETWEEN, query = "SELECT m FROM Dish m " +
 //                "WHERE m.user.id=:userId AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime DESC"),
-//        @NamedQuery(name = Meal.UPDATE, query = "UPDATE Meal m SET m.dateTime = :datetime, m.calories= :calories," +
+//        @NamedQuery(name = Dish.UPDATE, query = "UPDATE Dish m SET m.dateTime = :datetime, m.price= :price," +
 //                "m.description=:desc where m.id=:id and m.user.id=:userId")
 })
 @Entity
@@ -24,7 +24,7 @@ import java.time.LocalTime;
 public class Vote extends AbstractBaseEntity {
     public static final String ALL_SORTED = "Vote.getAll";
     public static final String DELETE = "Vote.delete";
-//    public static final String GET_BETWEEN = "Meal.getBetween";
+//    public static final String GET_BETWEEN = "Dish.getBetween";
 
     @Column(name = "date_time", nullable = false)
     @NotNull

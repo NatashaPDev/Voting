@@ -2,9 +2,9 @@ package ru.javawebinar.topjava.web;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.Dish;
 import ru.javawebinar.topjava.model.Vote;
-import ru.javawebinar.topjava.web.meal.MealRestController;
+import ru.javawebinar.topjava.web.dish.DishRestController;
 import ru.javawebinar.topjava.web.vote.VoteRestController;
 
 import javax.servlet.ServletConfig;
@@ -61,8 +61,8 @@ public class VoteServlet extends HttpServlet {
 //            LocalDate endDate = parseLocalDate(request.getParameter("endDate"));
 //            LocalTime startTime = parseLocalTime(request.getParameter("startTime"));
 //            LocalTime endTime = parseLocalTime(request.getParameter("endTime"));
-//            request.setAttribute("meals", mealController.getBetween(startDate, startTime, endDate, endTime));
-//            request.getRequestDispatcher("/meals.jsp").forward(request, response);
+//            request.setAttribute("dishes", dishController.getBetween(startDate, startTime, endDate, endTime));
+//            request.getRequestDispatcher("/dishes.jsp").forward(request, response);
         }
     }
 

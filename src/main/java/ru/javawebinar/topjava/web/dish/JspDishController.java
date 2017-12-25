@@ -1,11 +1,11 @@
-package ru.javawebinar.topjava.web.meal;
+package ru.javawebinar.topjava.web.dish;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.Dish;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -18,40 +18,40 @@ import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalDate;
 import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalTime;
 
 @Controller
-@RequestMapping(value = "/meals")
-public class JspMealController extends AbstractMealController {
+@RequestMapping(value = "/dishes")
+public class JspDishController extends AbstractDishController {
 
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
         super.delete(getId(request));
-        return "redirect:/meals";
+        return "redirect:/dishes";
     }
 
     @GetMapping("/update")
     public String update(HttpServletRequest request, Model model) {
-        model.addAttribute("meal", super.get(getId(request)));
-        return "mealForm";
+        model.addAttribute("dish", super.get(getId(request)));
+        return "dishForm";
     }
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("meal", new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS), "", 1000, ""));
-        return "mealForm";
+        model.addAttribute("dish", new Dish(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS), "", 1000, ""));
+        return "dishForm";
     }
 
     @PostMapping("/update")
     public String updateOrCreate(HttpServletRequest request) {
-        Meal meal = new Meal(LocalDateTime.parse(request.getParameter("dateTime")),
+        Dish dish = new Dish(LocalDateTime.parse(request.getParameter("dateTime")),
                 request.getParameter("description"),
-                Integer.valueOf(request.getParameter("calories")),
+                Integer.valueOf(request.getParameter("price")),
                 request.getParameter("restaurant"));
 
         if (request.getParameter("id").isEmpty()) {
-            super.create(meal);
+            super.create(dish);
         } else {
-            super.update(meal, getId(request));
+            super.update(dish, getId(request));
         }
-        return "redirect:/meals";
+        return "redirect:/dishes";
     }
 
     @PostMapping("/filter")
@@ -60,8 +60,8 @@ public class JspMealController extends AbstractMealController {
         LocalDate endDate = parseLocalDate(request.getParameter("endDate"));
         LocalTime startTime = parseLocalTime(request.getParameter("startTime"));
         LocalTime endTime = parseLocalTime(request.getParameter("endTime"));
-        model.addAttribute("meals", super.getBetween(startDate, startTime, endDate, endTime));
-        return "meals";
+        model.addAttribute("dishes", super.getBetween(startDate, startTime, endDate, endTime));
+        return "dishes";
     }
 
     private int getId(HttpServletRequest request) {

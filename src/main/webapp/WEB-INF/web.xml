@@ -51,13 +51,13 @@
     <!--</servlet-mapping>-->
 
     <!--<servlet>-->
-        <!--<servlet-name>mealServlet</servlet-name>-->
-        <!--<servlet-class>ru.javawebinar.topjava.web.MealServlet</servlet-class>-->
+        <!--<servlet-name>dishServlet</servlet-name>-->
+        <!--<servlet-class>ru.javawebinar.topjava.web.DishServlet</servlet-class>-->
         <!--<load-on-startup>0</load-on-startup>-->
     <!--</servlet>-->
     <!--<servlet-mapping>-->
-        <!--<servlet-name>mealServlet</servlet-name>-->
-        <!--<url-pattern>/meals</url-pattern>-->
+        <!--<servlet-name>dishServlet</servlet-name>-->
+        <!--<url-pattern>/dishes</url-pattern>-->
     <!--</servlet-mapping>-->
 
     <!--<servlet>-->

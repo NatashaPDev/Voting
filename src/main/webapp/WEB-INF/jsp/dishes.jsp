@@ -4,14 +4,14 @@
 <%@ taglib prefix="fn" uri="http://topjava.javawebinar.ru/functions" %>
 <html>
 <head>
-    <title>Meal list</title>
+    <title>Dish list</title>
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <section>
     <h3><a href="index.html">Home</a></h3>
-    <h2>Meals</h2>
-    <form method="post" action="meals?action=filter">
+    <h2>Dishes</h2>
+    <form method="post" action="dishes?action=filter">
         <dl>
             <dt>From Date:</dt>
             <dd><input type="date" name="startDate" value="${param.startDate}"></dd>
@@ -31,33 +31,33 @@
         <button type="submit">Filter</button>
     </form>
     <hr/>
-    <a href="meals/create">Add Meal</a>
+    <a href="dishes/create">Add Dish</a>
     <hr/>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
         <tr>
             <th>Date</th>
             <th>Description</th>
-            <th>Calories</th>
+            <th>Price</th>
             <th>Restaurant</th>
             <th></th>
             <th></th>
         </tr>
         </thead>
-        <c:forEach items="${meals}" var="meal">
-            <jsp:useBean id="meal" scope="page" type="ru.javawebinar.topjava.to.MealWithExceed"/>
-            <tr class="${meal.exceed ? 'exceeded' : 'normal'}">
+        <c:forEach items="${dishes}" var="dish">
+            <jsp:useBean id="dish" scope="page" type="ru.javawebinar.topjava.to.DishWithExceed"/>
+            <tr class="${dish.exceed ? 'exceeded' : 'normal'}">
                 <td>
-                        <%--${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}--%>
-                        <%--<%=TimeUtil.toString(meal.getDateTime())%>--%>
-                        <%--${fn:replace(meal.dateTime, 'T', ' ')}--%>
-                        ${fn:formatDateTime(meal.dateTime)}
+                        <%--${dish.dateTime.toLocalDate()} ${dish.dateTime.toLocalTime()}--%>
+                        <%--<%=TimeUtil.toString(dish.getDateTime())%>--%>
+                        <%--${fn:replace(dish.dateTime, 'T', ' ')}--%>
+                        ${fn:formatDateTime(dish.dateTime)}
                 </td>
-                <td>${meal.description}</td>
-                <td>${meal.calories}</td>
-                <td>${meal.restaurant}</td>
-                <td><a href="meals/update?id=${meal.id}">Update</a></td>
-                <td><a href="meals/delete?id=${meal.id}">Delete</a></td>
+                <td>${dish.description}</td>
+                <td>${dish.price}</td>
+                <td>${dish.restaurant}</td>
+                <td><a href="dishes/update?id=${dish.id}">Update</a></td>
+                <td><a href="dishes/delete?id=${dish.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>

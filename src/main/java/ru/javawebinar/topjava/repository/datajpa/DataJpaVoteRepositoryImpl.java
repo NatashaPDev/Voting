@@ -3,9 +3,9 @@ package ru.javawebinar.topjava.repository.datajpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.Dish;
 import ru.javawebinar.topjava.model.Vote;
-import ru.javawebinar.topjava.repository.MealRepository;
+import ru.javawebinar.topjava.repository.DishRepository;
 import ru.javawebinar.topjava.repository.VoteRepository;
 
 import java.time.LocalDateTime;
@@ -46,7 +46,7 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     }
 
 //    @Override
-//    public List<Meal> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId) {
-//        return crudMealRepository.getBetween(startDate, endDate, userId);
+//    public List<Dish> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId) {
+//        return crudDishRepository.getBetween(startDate, endDate, userId);
 //    }
 }

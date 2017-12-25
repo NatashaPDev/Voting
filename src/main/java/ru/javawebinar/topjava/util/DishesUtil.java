@@ -1,9 +1,7 @@
 package ru.javawebinar.topjava.util;
 
 import ru.javawebinar.topjava.model.Dish;
-import ru.javawebinar.topjava.model.Vote;
 import ru.javawebinar.topjava.to.DishWithExceed;
-import ru.javawebinar.topjava.to.VoteTO;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,31 +12,32 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
-public class VotesUtil {
+public class DishesUtil {
 
-    //public static final int DEFAULT_CALORIES_PER_DAY = 2000;
+    public static final int DEFAULT_CALORIES_PER_DAY = 2000;
 
-    private VotesUtil() {
+    private DishesUtil() {
     }
 
-//    public static List<DishWithExceed> getWithExceeded(Collection<Dish> dishes, int pricePerDay) {
-//        return getFilteredWithExceeded(dishes, LocalTime.MIN, LocalTime.MAX, pricePerDay);
-//    }
+    public static List<DishWithExceed> getWithExceeded(Collection<Dish> dishes) {
+        return getFilteredWithExceeded(dishes, LocalTime.MIN, LocalTime.MAX);
+    }
 
-    public static List<VoteTO> getAll(Collection<Vote> votes) {
-//        Map<LocalDate, Integer> priceSumByDate = votes.stream()
-//                .collect(
-//                        Collectors.groupingBy(Dish::getDate, Collectors.summingInt(Dish::getPrice))
-////                      Collectors.toMap(Dish::getDate, Dish::getPrice, Integer::sum)
-//                );
+    public static List<DishWithExceed> getFilteredWithExceeded(Collection<Dish> dishes, LocalTime startTime, LocalTime endTime) {
+        Map<LocalDate, Integer> priceSumByDate = dishes.stream()
+                .collect(
+                        Collectors.groupingBy(Dish::getDate, Collectors.summingInt(Dish::getPrice))
+//                      Collectors.toMap(Dish::getDate, Dish::getPrice, Integer::sum)
+                );
 
-        return votes.stream()
-                .map(vote -> createVoteTO(vote))
+        return dishes.stream()
+                .filter(dish -> DateTimeUtil.isBetween(dish.getTime(), startTime, endTime))
+                .map(dish -> createWithExceed(dish))
                 .collect(toList());
     }
 
-    private static VoteTO createVoteTO(Vote vote) {
-        return new VoteTO(vote.getId(), vote.getDateTime(), vote.getRestaurant());
+    private static DishWithExceed createWithExceed(Dish dish) {
+        return new DishWithExceed(dish.getId(), dish.getDateTime(), dish.getDescription(), dish.getPrice(), dish.getRestaurant());
     }
 
 /*
