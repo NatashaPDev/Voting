@@ -8,7 +8,7 @@
 
 
 <section>
-    <jsp:useBean id="dish" type="ru.javawebinar.topjava.model.Dish" scope="request"/>
+    <jsp:useBean id="dish" type="ru.natashapetrenko.voting.model.Dish" scope="request"/>
     <h3>Dish</h3>
     <hr>
     <form method="post" action="update">

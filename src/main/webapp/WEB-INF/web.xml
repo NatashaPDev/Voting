@@ -40,34 +40,4 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--<servlet>-->
-        <!--<servlet-name>userServlet</servlet-name>-->
-        <!--<servlet-class>ru.javawebinar.topjava.web.UserServlet</servlet-class>-->
-        <!--<load-on-startup>0</load-on-startup>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>userServlet</servlet-name>-->
-        <!--<url-pattern>/users</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>dishServlet</servlet-name>-->
-        <!--<servlet-class>ru.javawebinar.topjava.web.DishServlet</servlet-class>-->
-        <!--<load-on-startup>0</load-on-startup>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>dishServlet</servlet-name>-->
-        <!--<url-pattern>/dishes</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>voteServlet</servlet-name>-->
-        <!--<servlet-class>ru.javawebinar.topjava.web.VoteServlet</servlet-class>-->
-        <!--<load-on-startup>0</load-on-startup>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>voteServlet</servlet-name>-->
-        <!--<url-pattern>/votes</url-pattern>-->
-    <!--</servlet-mapping>-->
-
 </web-app>

@@ -24,7 +24,7 @@
         </tr>
         </thead>
         <c:forEach items="${votes}" var="vote">
-            <jsp:useBean id="vote" scope="page" type="ru.javawebinar.topjava.to.VoteTO"/>
+            <jsp:useBean id="vote" scope="page" type="ru.natashapetrenko.voting.to.VoteTO"/>
             <tr >
                 <td>
                         <%--${dish.dateTime.toLocalDate()} ${dish.dateTime.toLocalTime()}--%>

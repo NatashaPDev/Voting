@@ -14,9 +14,9 @@
     <!--<context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>-->
     <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>
 
-    <!--<context:component-scan base-package="ru.javawebinar.**.repository.jpa"/>-->
-    <context:component-scan base-package="ru.javawebinar.**.repository.datajpa"/>
-    <jpa:repositories base-package="ru.javawebinar.**.repository.datajpa"/>
+    <!--<context:component-scan base-package="ru.natashapetrenkoenko.**.repository.jpa"/>-->
+    <context:component-scan base-package="ru.natashapetrenko.**.repository.datajpa"/>
+    <jpa:repositories base-package="ru.natashapetrenko.**.repository.datajpa"/>
 
     <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
         <jdbc:script location="classpath:db/initDB_hsql.sql"/>
@@ -35,7 +35,7 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
-          p:packagesToScan="ru.javawebinar.**.model">
+          p:packagesToScan="ru.natashapetrenko.**.model">
         <!--p:persistenceUnitName="persistenceUnit">-->
 
         <property name="jpaPropertyMap">
@@ -64,7 +64,7 @@
           p:entityManagerFactory-ref="entityManagerFactory"/>
 
 <!--
-    <context:component-scan base-package="ru.javawebinar.**.repository.jdbc"/>
+    <context:component-scan base-package="ru.natashapetrenkoenko.**.repository.jdbc"/>
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg ref="dataSource"/>
     </bean>
