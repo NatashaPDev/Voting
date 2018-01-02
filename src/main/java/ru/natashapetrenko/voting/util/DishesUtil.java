@@ -34,7 +34,7 @@ public class DishesUtil {
     }
 
     private static DishWithExceed createWithExceed(Dish dish) {
-        return new DishWithExceed(dish.getId(), dish.getDateTime(), dish.getDescription(), dish.getPrice(), dish.getRestaurant());
+        return new DishWithExceed(dish.getId(), dish.getDateTime(), dish.getDescription(), dish.getPrice(), dish.getRestaurant().getId());
     }
 
 }

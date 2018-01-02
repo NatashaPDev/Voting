@@ -15,36 +15,34 @@ public class DataJpaDishRepositoryImpl implements DishRepository {
     @Autowired
     private CrudDishRepository crudDishRepository;
 
-    @Autowired
-    private CrudUserRepository crudUserRepository;
-
     @Override
     @Transactional
-    public Dish save(Dish dish, int userId) {
-        if (!dish.isNew() && get(dish.getId(), userId) == null) {
-            return null;
-        }
-        dish.setUser(crudUserRepository.getOne(userId));
+    public Dish save(Dish dish) {
         return crudDishRepository.save(dish);
     }
 
     @Override
-    public boolean delete(int id, int userId) {
-        return crudDishRepository.delete(id, userId) != 0;
+    public boolean delete(int id) {
+        return crudDishRepository.delete(id) != 0;
     }
 
     @Override
-    public Dish get(int id, int userId) {
-        return crudDishRepository.findById(id).filter(dish -> dish.getUser().getId() == userId).orElse(null);
+    public Dish get(int id) {
+        return crudDishRepository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Dish> getAll(int userId) {
-        return crudDishRepository.getAll(userId);
+    public List<Dish> getAll() {
+        return crudDishRepository.getAll();
     }
 
     @Override
-    public List<Dish> getBetween(LocalDateTime startDate, int userId) {
-        return crudDishRepository.getBetween(startDate,  userId);
+    public List<Dish> getBetween(LocalDateTime startDate) {
+        return crudDishRepository.getBetween(startDate);
+    }
+
+    @Override
+    public List<Dish> getByRestaurantId(int restaurantId) {
+        return crudDishRepository.getByRestaurantId(restaurantId);
     }
 }

@@ -1,11 +1,7 @@
 package ru.natashapetrenko.voting.model;
 
-import org.hibernate.validator.constraints.Range;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -32,18 +28,19 @@ public class Vote extends AbstractBaseEntity {
     @NotNull
     private User user;
 
-    @Column(name = "restaurant", nullable = false)
-    @NotBlank
-    private String restaurant;
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    @NotNull
+    private Restaurant restaurant;
 
     public Vote() {
     }
 
-    public Vote(LocalDateTime dateTime, String restaurant) {
+    public Vote(LocalDateTime dateTime, Restaurant restaurant) {
         this(null, dateTime, restaurant);
     }
 
-    public Vote(Integer id, LocalDateTime dateTime, String restaurant) {
+    public Vote(Integer id, LocalDateTime dateTime, Restaurant restaurant) {
         super(id);
         this.dateTime = dateTime;
         this.restaurant = restaurant;
@@ -73,11 +70,11 @@ public class Vote extends AbstractBaseEntity {
         this.user = user;
     }
 
-    public String getRestaurant() {
+    public Restaurant getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(String restaurant) {
+    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
 

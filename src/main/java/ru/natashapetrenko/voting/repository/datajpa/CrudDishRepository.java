@@ -15,16 +15,18 @@ public interface CrudDishRepository extends JpaRepository<Dish, Integer> {
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM Dish m WHERE m.id=:id AND m.user.id=:userId")
-    int delete(@Param("id") int id, @Param("userId") int userId);
+    @Query("DELETE FROM Dish m WHERE m.id=:id")
+    int delete(@Param("id") int id);
 
     @Override
     Dish save(Dish item);
 
-    @Query("SELECT m FROM Dish m WHERE m.user.id=:userId ORDER BY m.dateTime DESC")
-    List<Dish> getAll(@Param("userId") int userId);
+    @Query("SELECT m FROM Dish m ORDER BY m.dateTime")
+    List<Dish> getAll();
 
     @SuppressWarnings("JpaQlInspection")
-    @Query("SELECT m from Dish m WHERE m.user.id=:userId AND m.dateTime=:startDate ORDER BY m.dateTime DESC")
-    List<Dish> getBetween(@Param("startDate") LocalDateTime startDate, @Param("userId") int userId);
+    @Query("SELECT m from Dish m WHERE m.dateTime=:startDate ORDER BY m.dateTime DESC")
+    List<Dish> getBetween(@Param("startDate") LocalDateTime startDate);
+
+    List<Dish> getByRestaurantId(int restaurantId);
 }

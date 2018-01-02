@@ -1,6 +1,7 @@
 package ru.natashapetrenko.voting.web.vote;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import ru.natashapetrenko.voting.model.Dish;
 import ru.natashapetrenko.voting.model.Vote;
 import ru.natashapetrenko.voting.to.DishWithExceed;
 import ru.natashapetrenko.voting.to.VoteTO;
+import ru.natashapetrenko.voting.util.exception.VoteCantBeChangedException;
 import ru.natashapetrenko.voting.web.dish.AbstractDishController;
 
 import java.net.URI;
@@ -49,7 +51,7 @@ public class VoteRestController extends AbstractVoteController {
         Vote created = super.create(vote);
 
         if (created == null) {
-            return null;
+            throw new VoteCantBeChangedException();
         }
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -57,6 +59,14 @@ public class VoteRestController extends AbstractVoteController {
                 .buildAndExpand(created.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(created);
+    }
+
+    @ExceptionHandler(VoteCantBeChangedException.class)
+    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
+    @ResponseBody
+    public String handleResourceNotFoundException(VoteCantBeChangedException ex)
+    {
+        return ex.getMessage();
     }
 
 }

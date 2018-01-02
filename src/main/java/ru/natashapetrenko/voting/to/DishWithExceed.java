@@ -13,18 +13,18 @@ public class DishWithExceed {
 
     private final int price;
 
-    private final String restaurant;
+    private final int restaurant;
 
     public DishWithExceed(@JsonProperty("id") Integer id,
                           @JsonProperty("dateTime") LocalDateTime dateTime,
                           @JsonProperty("description") String description,
                           @JsonProperty("price") int price,
-                          @JsonProperty("restaurant") String restaurant) {
+                          @JsonProperty("restaurant_id") Integer restaurant_id) {
         this.id = id;
         this.dateTime = dateTime;
         this.description = description;
         this.price = price;
-        this.restaurant = restaurant;
+        this.restaurant = restaurant_id;
     }
 
     public Integer getId() {
@@ -43,7 +43,7 @@ public class DishWithExceed {
         return price;
     }
 
-    public String getRestaurant() {
+    public int getRestaurant() {
         return restaurant;
     }
 

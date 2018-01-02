@@ -11,10 +11,8 @@
 
     <!-- Change DB by comment/uncomment property-placeholder -->
 
-    <!--<context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>-->
     <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>
 
-    <!--<context:component-scan base-package="ru.natashapetrenkoenko.**.repository.jpa"/>-->
     <context:component-scan base-package="ru.natashapetrenko.**.repository.datajpa"/>
     <jpa:repositories base-package="ru.natashapetrenko.**.repository.datajpa"/>
 
@@ -42,7 +40,6 @@
             <map>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="${hibernate.use_sql_comments}"/>
-                <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).CACHE_REGION_FACTORY}" value="org.hibernate.cache.jcache.JCacheRegionFactory"/>
                 <entry key="#{T(org.hibernate.cache.jcache.JCacheRegionFactory).PROVIDER}" value="org.ehcache.jsr107.EhcacheCachingProvider"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SECOND_LEVEL_CACHE}" value="true"/>
@@ -63,14 +60,4 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"/>
 
-<!--
-    <context:component-scan base-package="ru.natashapetrenkoenko.**.repository.jdbc"/>
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <constructor-arg ref="dataSource"/>
-    </bean>
-
-    <bean id="namedJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-        <constructor-arg ref="dataSource"/>
-    </bean>
--->
 </beans>

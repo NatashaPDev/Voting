@@ -6,18 +6,20 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface DishRepository {
-    // null if updated dish do not belong to userId
-    Dish save(Dish dish, int userId);
+
+    Dish save(Dish dish);
 
     // false if dish do not belong to userId
-    boolean delete(int id, int userId);
+    boolean delete(int id);
 
     // null if dish do not belong to userId
-    Dish get(int id, int userId);
+    Dish get(int id);
 
     // ORDERED dateTime desc
-    List<Dish> getAll(int userId);
+    List<Dish> getAll();
 
     // ORDERED dateTime desc
-    List<Dish> getBetween(LocalDateTime startDate, int userId);
+    List<Dish> getBetween(LocalDateTime startDate);
+
+    List<Dish> getByRestaurantId(int restaurantId);
 }

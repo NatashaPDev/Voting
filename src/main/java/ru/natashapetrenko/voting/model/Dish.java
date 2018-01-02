@@ -1,26 +1,21 @@
 package ru.natashapetrenko.voting.model;
 
-import org.hibernate.validator.constraints.Range;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @SuppressWarnings("JpaQlInspection")
 @NamedQueries({
-        @NamedQuery(name = Dish.ALL_SORTED, query = "SELECT m FROM Dish m WHERE m.user.id=:userId ORDER BY m.dateTime DESC"),
-        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish m WHERE m.id=:id AND m.user.id=:userId"),
+        @NamedQuery(name = Dish.ALL_SORTED, query = "SELECT m FROM Dish m ORDER BY m.dateTime DESC"),
+        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish m WHERE m.id=:id"),
         @NamedQuery(name = Dish.GET_BETWEEN, query = "SELECT m FROM Dish m " +
-                "WHERE m.user.id=:userId AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime DESC"),
-//        @NamedQuery(name = Dish.UPDATE, query = "UPDATE Dish m SET m.dateTime = :datetime, m.price= :price," +
-//                "m.description=:desc where m.id=:id and m.user.id=:userId")
+                "WHERE m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime DESC"),
 })
 @Entity
-@Table(name = "dishes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"}, name = "dishes_unique_user_datetime_idx")})
+@Table(name = "dishes", uniqueConstraints = {@UniqueConstraint(columnNames = {"restaurant_id", "date_time"}, name = "dishes_unique_user_datetime_idx")})
 public class Dish extends AbstractBaseEntity {
     public static final String ALL_SORTED = "Dish.getAll";
     public static final String DELETE = "Dish.delete";
@@ -38,27 +33,22 @@ public class Dish extends AbstractBaseEntity {
     private int price;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "restaurant_id", nullable = false)
     @NotNull
-    private User user;
-
-    @Column(name = "restaurant", nullable = false)
-    @NotBlank
-    private String restaurant;
+    private Restaurant restaurant;
 
     public Dish() {
     }
 
-    public Dish(LocalDateTime dateTime, String description, int price, String restaurant) {
-        this(null, dateTime, description, price, restaurant);
+    public Dish(LocalDateTime dateTime, String description, int price) {
+        this(null, dateTime, description, price);
     }
 
-    public Dish(Integer id, LocalDateTime dateTime, String description, int price, String restaurant) {
+    public Dish(Integer id, LocalDateTime dateTime, String description, int price) {
         super(id);
         this.dateTime = dateTime;
         this.description = description;
         this.price = price;
-        this.restaurant = restaurant;
     }
 
     public LocalDateTime getDateTime() {
@@ -93,19 +83,11 @@ public class Dish extends AbstractBaseEntity {
         this.price = price;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getRestaurant() {
+    public Restaurant getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(String restaurant) {
+    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
 

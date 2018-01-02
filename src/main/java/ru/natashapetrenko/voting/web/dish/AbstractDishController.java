@@ -24,48 +24,31 @@ public abstract class AbstractDishController {
     private DishService service;
 
     public Dish get(int id) {
-        int userId = AuthorizedUser.id();
-        log.info("get dish {} for user {}", id, userId);
-        return service.get(id, userId);
+        return service.get(id);
     }
 
     public void delete(int id) {
-        int userId = AuthorizedUser.id();
-        log.info("delete dish {} for user {}", id, userId);
-        service.delete(id, userId);
+        service.delete(id);
     }
 
     public List<DishWithExceed> getAll() {
-        int userId = AuthorizedUser.id();
-        log.info("getAll for user {}", userId);
-        return DishesUtil.getWithExceeded(service.getAll(userId));
+        return DishesUtil.getWithExceeded(service.getAll());
     }
 
     public Dish create(Dish dish) {
-        int userId = AuthorizedUser.id();
         checkNew(dish);
-        log.info("create {} for user {}", dish, userId);
-        return service.create(dish, userId);
+        return service.create(dish);
     }
 
     public void update(Dish dish, int id) {
-        int userId = AuthorizedUser.id();
         assureIdConsistent(dish, id);
-        log.info("update {} for user {}", dish, userId);
-        service.update(dish, userId);
+        service.update(dish);
     }
 
-    /**
-     * <ol>Filter separately
-     * <li>by date</li>
-     * <li>by time for every date</li>
-     * </ol>
-     */
     public List<DishWithExceed> getBetween(LocalDate startDate) {
-        int userId = AuthorizedUser.id();
 
         List<Dish> dishesDateFiltered = service.getBetweenDates(
-                startDate != null ? startDate : DateTimeUtil.MIN_DATE, userId);
+                startDate != null ? startDate : DateTimeUtil.MIN_DATE);
 
         return DishesUtil.getFilteredWithExceeded(dishesDateFiltered,
                 LocalTime.MIN

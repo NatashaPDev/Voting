@@ -9,19 +9,21 @@ import java.time.LocalTime;
 import java.util.List;
 
 public interface DishService {
-    Dish get(int id, int userId) throws NotFoundException;
+    Dish get(int id) throws NotFoundException;
 
-    void delete(int id, int userId) throws NotFoundException;
+    void delete(int id) throws NotFoundException;
 
-    default List<Dish> getBetweenDates(LocalDate startDate, int userId) {
-        return getBetweenDateTimes(LocalDateTime.of(startDate, LocalTime.MIN), userId);
+    default List<Dish> getBetweenDates(LocalDate startDate) {
+        return getBetweenDateTimes(LocalDateTime.of(startDate, LocalTime.MIN));
     }
 
-    List<Dish> getBetweenDateTimes(LocalDateTime startDateTime, int userId);
+    List<Dish> getBetweenDateTimes(LocalDateTime startDateTime);
 
-    List<Dish> getAll(int userId);
+    List<Dish> getAll();
 
-    Dish update(Dish dish, int userId) throws NotFoundException;
+    List<Dish> getByRestaurantId(int restaurantId);
 
-    Dish create(Dish dish, int userId);
+    Dish update(Dish dish) throws NotFoundException;
+
+    Dish create(Dish dish);
 }
