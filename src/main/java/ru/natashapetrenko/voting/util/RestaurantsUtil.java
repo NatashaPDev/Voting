@@ -1,12 +1,7 @@
 package ru.natashapetrenko.voting.util;
 
-import ru.natashapetrenko.voting.model.Dish;
 import ru.natashapetrenko.voting.model.Restaurant;
-import ru.natashapetrenko.voting.model.Role;
-import ru.natashapetrenko.voting.model.User;
-import ru.natashapetrenko.voting.to.DishWithExceed;
 import ru.natashapetrenko.voting.to.RestaurantTo;
-import ru.natashapetrenko.voting.to.UserTo;
 
 import java.util.Collection;
 import java.util.List;

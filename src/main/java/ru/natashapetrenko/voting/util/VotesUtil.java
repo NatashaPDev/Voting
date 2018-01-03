@@ -1,7 +1,7 @@
 package ru.natashapetrenko.voting.util;
 
 import ru.natashapetrenko.voting.model.Vote;
-import ru.natashapetrenko.voting.to.VoteTO;
+import ru.natashapetrenko.voting.to.VoteTo;
 import java.util.Collection;
 import java.util.List;
 
@@ -12,15 +12,15 @@ public class VotesUtil {
     private VotesUtil() {
     }
 
-    public static List<VoteTO> getAll(Collection<Vote> votes) {
+    public static List<VoteTo> getAll(Collection<Vote> votes) {
 
         return votes.stream()
                 .map(vote -> createVoteTO(vote))
                 .collect(toList());
     }
 
-    private static VoteTO createVoteTO(Vote vote) {
-        return new VoteTO(vote.getId(), vote.getDateTime(), vote.getRestaurant().getName());
+    private static VoteTo createVoteTO(Vote vote) {
+        return new VoteTo(vote.getId(), vote.getDateTime(), vote.getRestaurant().getName());
     }
 
 }

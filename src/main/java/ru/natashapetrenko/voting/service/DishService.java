@@ -4,8 +4,6 @@ import ru.natashapetrenko.voting.model.Dish;
 import ru.natashapetrenko.voting.util.exception.NotFoundException;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 public interface DishService {
@@ -13,17 +11,11 @@ public interface DishService {
 
     void delete(int id) throws NotFoundException;
 
-    default List<Dish> getBetweenDates(LocalDate startDate) {
-        return getBetweenDateTimes(LocalDateTime.of(startDate, LocalTime.MIN));
-    }
-
-    List<Dish> getBetweenDateTimes(LocalDateTime startDateTime);
-
     List<Dish> getAll();
 
-    List<Dish> getByRestaurantId(int restaurantId);
+    List<Dish> getByDate(LocalDate date, int restaurantId);
 
-    Dish update(Dish dish) throws NotFoundException;
+    Dish update(Dish dish, int restaurantId) throws NotFoundException;
 
-    Dish create(Dish dish);
+    Dish create(Dish dish, int restaurantId);
 }

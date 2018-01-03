@@ -9,6 +9,7 @@ import ru.natashapetrenko.voting.service.RestaurantService;
 import ru.natashapetrenko.voting.to.RestaurantTo;
 import ru.natashapetrenko.voting.util.RestaurantsUtil;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.natashapetrenko.voting.util.ValidationUtil.assureIdConsistent;
@@ -45,8 +46,8 @@ public class AbstractRestaurantController {
         restaurantService.update(vote);
     }
 
-    public List<Dish> getDishes(int id) {
-        return dishService.getByRestaurantId(id);
+    public List<Dish> getDishes(LocalDate date, int id) {
+        return dishService.getByDate(date, id);
     }
 
 }

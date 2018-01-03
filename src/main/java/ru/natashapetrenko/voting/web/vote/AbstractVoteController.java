@@ -1,22 +1,13 @@
 package ru.natashapetrenko.voting.web.vote;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import ru.natashapetrenko.voting.AuthorizedUser;
-import ru.natashapetrenko.voting.model.Dish;
 import ru.natashapetrenko.voting.model.Vote;
-import ru.natashapetrenko.voting.service.DishService;
 import ru.natashapetrenko.voting.service.VoteService;
-import ru.natashapetrenko.voting.to.DishWithExceed;
-import ru.natashapetrenko.voting.to.VoteTO;
-import ru.natashapetrenko.voting.util.DateTimeUtil;
-import ru.natashapetrenko.voting.util.DishesUtil;
+import ru.natashapetrenko.voting.to.VoteTo;
 import ru.natashapetrenko.voting.util.VotesUtil;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import static ru.natashapetrenko.voting.util.ValidationUtil.assureIdConsistent;
@@ -38,7 +29,7 @@ public class AbstractVoteController {
         service.delete(id, userId);
     }
 
-    public List<VoteTO> getAll() {
+    public List<VoteTo> getAll() {
         int userId = AuthorizedUser.id();
         return VotesUtil.getAll(service.getAll(userId));
     }

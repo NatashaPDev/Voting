@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.natashapetrenko.voting.model.Dish;
 import ru.natashapetrenko.voting.repository.DishRepository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,9 +16,13 @@ public class DataJpaDishRepositoryImpl implements DishRepository {
     @Autowired
     private CrudDishRepository crudDishRepository;
 
+    @Autowired
+    private CrudRestaurantRepository crudRestaurantRepository;
+
     @Override
     @Transactional
-    public Dish save(Dish dish) {
+    public Dish save(Dish dish, int restaurantId) {
+        dish.setRestaurant(crudRestaurantRepository.getOne(restaurantId));
         return crudDishRepository.save(dish);
     }
 
@@ -37,12 +42,8 @@ public class DataJpaDishRepositoryImpl implements DishRepository {
     }
 
     @Override
-    public List<Dish> getBetween(LocalDateTime startDate) {
-        return crudDishRepository.getBetween(startDate);
+    public List<Dish> getByDate(LocalDate date, int restaurantId) {
+        return crudDishRepository.getByDate(date, restaurantId);
     }
 
-    @Override
-    public List<Dish> getByRestaurantId(int restaurantId) {
-        return crudDishRepository.getByRestaurantId(restaurantId);
-    }
 }

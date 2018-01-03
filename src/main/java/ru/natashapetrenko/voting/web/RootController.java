@@ -34,7 +34,7 @@ public class RootController {
     @GetMapping("/dishes")
     public String dishes(Model model) {
         model.addAttribute("dishes",
-                DishesUtil.getWithExceeded(dishService.getAll()));
+                DishesUtil.getAll(dishService.getAll()));
         return "dishes";
     }
 }

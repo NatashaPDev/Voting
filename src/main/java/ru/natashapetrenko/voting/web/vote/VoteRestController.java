@@ -1,20 +1,15 @@
 package ru.natashapetrenko.voting.web.vote;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import ru.natashapetrenko.voting.model.Dish;
 import ru.natashapetrenko.voting.model.Vote;
-import ru.natashapetrenko.voting.to.DishWithExceed;
-import ru.natashapetrenko.voting.to.VoteTO;
+import ru.natashapetrenko.voting.to.VoteTo;
 import ru.natashapetrenko.voting.util.exception.VoteCantBeChangedException;
-import ru.natashapetrenko.voting.web.dish.AbstractDishController;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -36,7 +31,7 @@ public class VoteRestController extends AbstractVoteController {
 
     @Override
     @GetMapping
-    public List<VoteTO> getAll() {
+    public List<VoteTo> getAll() {
         return super.getAll();
     }
 

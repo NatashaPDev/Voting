@@ -45,7 +45,7 @@
         </tr>
         </thead>
         <c:forEach items="${dishes}" var="dish">
-            <jsp:useBean id="dish" scope="page" type="ru.natashapetrenko.voting.to.DishWithExceed"/>
+            <jsp:useBean id="dish" scope="page" type="ru.natashapetrenko.voting.to.DishTo"/>
             <tr class="${dish.exceed ? 'exceeded' : 'normal'}">
                 <td>
                         <%--${dish.dateTime.toLocalDate()} ${dish.dateTime.toLocalTime()}--%>

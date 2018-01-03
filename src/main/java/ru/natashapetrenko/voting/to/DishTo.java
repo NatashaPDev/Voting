@@ -2,12 +2,12 @@ package ru.natashapetrenko.voting.to;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-public class DishWithExceed {
+public class DishTo {
     private final Integer id;
 
-    private final LocalDateTime dateTime;
+    private final LocalDate date;
 
     private final String description;
 
@@ -15,13 +15,13 @@ public class DishWithExceed {
 
     private final int restaurant;
 
-    public DishWithExceed(@JsonProperty("id") Integer id,
-                          @JsonProperty("dateTime") LocalDateTime dateTime,
-                          @JsonProperty("description") String description,
-                          @JsonProperty("price") int price,
-                          @JsonProperty("restaurant_id") Integer restaurant_id) {
+    public DishTo(@JsonProperty("id") Integer id,
+                  @JsonProperty("date") LocalDate date,
+                  @JsonProperty("description") String description,
+                  @JsonProperty("price") int price,
+                  @JsonProperty("restaurant_id") Integer restaurant_id) {
         this.id = id;
-        this.dateTime = dateTime;
+        this.date = date;
         this.description = description;
         this.price = price;
         this.restaurant = restaurant_id;
@@ -31,8 +31,8 @@ public class DishWithExceed {
         return id;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDate getDate() {
+        return date;
     }
 
     public String getDescription() {
@@ -49,9 +49,9 @@ public class DishWithExceed {
 
     @Override
     public String toString() {
-        return "DishWithExceed{" +
+        return "DishTo{" +
                 "id=" + id +
-                ", dateTime=" + dateTime +
+                ", date=" + date +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 '}';

@@ -40,19 +40,9 @@ public class RestaurantRestController extends AbstractRestaurantController {
         super.update(restaurant, id);
     }
 
-    @Override
-    @GetMapping("/{id}/dishes")
-    public List<Dish> getDishes(@PathVariable("id") int id) {
-        return super.getDishes(id);
-    }
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant) {
         Restaurant created = super.create(restaurant);
-
-        if (created == null) {
-            return null;
-        }
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")

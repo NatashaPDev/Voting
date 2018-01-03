@@ -6,6 +6,7 @@ import org.springframework.util.Assert;
 import ru.natashapetrenko.voting.model.Dish;
 import ru.natashapetrenko.voting.repository.DishRepository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,30 +33,24 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> getBetweenDateTimes(LocalDateTime startDateTime) {
-        Assert.notNull(startDateTime, "startDateTime must not be null");
-        return repository.getBetween(startDateTime);
-    }
-
-    @Override
     public List<Dish> getAll() {
         return repository.getAll();
     }
 
     @Override
-    public List<Dish> getByRestaurantId(int restaurantId) {
-        Assert.notNull(restaurantId, "restaurantId must not be null");
-        return repository.getByRestaurantId(restaurantId);
+    public List<Dish> getByDate(LocalDate date, int restaurantId) {
+        Assert.notNull(date, "date must not be null");
+        return repository.getByDate(date, restaurantId);
     }
 
     @Override
-    public Dish update(Dish dish) {
-        return checkNotFoundWithId(repository.save(dish), dish.getId());
+    public Dish update(Dish dish, int restaurantId) {
+        return checkNotFoundWithId(repository.save(dish, restaurantId), dish.getId());
     }
 
     @Override
-    public Dish create(Dish dish) {
+    public Dish create(Dish dish, int restaurantId) {
         Assert.notNull(dish, "dish must not be null");
-        return repository.save(dish);
+        return repository.save(dish, restaurantId);
     }
 }
