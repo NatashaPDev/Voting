@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.natashapetrenko.voting.model.Dish;
+import ru.natashapetrenko.voting.model.Restaurant;
 import ru.natashapetrenko.voting.repository.DishRepository;
 
 import java.time.LocalDate;
@@ -52,5 +53,10 @@ public class DishServiceImpl implements DishService {
     public Dish create(Dish dish, int restaurantId) {
         Assert.notNull(dish, "dish must not be null");
         return repository.save(dish, restaurantId);
+    }
+
+    @Override
+    public List<Restaurant> getRestaurantsByDate(LocalDate date) {
+        return repository.getRestaurantsByDate(date);
     }
 }

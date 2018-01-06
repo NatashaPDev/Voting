@@ -1,49 +1,44 @@
 package ru.natashapetrenko.voting.web.vote;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.natashapetrenko.voting.AuthorizedUser;
 import ru.natashapetrenko.voting.model.Vote;
+import ru.natashapetrenko.voting.service.VoteService;
 import ru.natashapetrenko.voting.to.VoteTo;
+import ru.natashapetrenko.voting.util.VotesUtil;
 import ru.natashapetrenko.voting.util.exception.VoteCantBeChangedException;
 
 import java.net.URI;
 import java.util.List;
 
+import static ru.natashapetrenko.voting.util.ValidationUtil.checkNew;
+
 @RestController
 @RequestMapping(value = VoteRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class VoteRestController extends AbstractVoteController {
+public class VoteRestController{
     static final String REST_URL = "/rest/votes";
 
-    @Override
-    @GetMapping("/{id}")
-    public Vote get(@PathVariable("id") int id) {
-        return super.get(id);
-    }
+    @Autowired
+    private VoteService service;
 
-    @Override
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") int id) {
-        super.delete(id);
-    }
-
-    @Override
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<VoteTo> getAll() {
-        return super.getAll();
-    }
-
-    @Override
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody Vote vote, @PathVariable("id") int id) {
-        super.update(vote, id);
+        return VotesUtil.getAll(service.getAll());
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Vote> createWithLocation(@RequestBody Vote vote) {
-        Vote created = super.create(vote);
+
+        int userId = AuthorizedUser.id();
+        checkNew(vote);
+        Vote created = service.create(vote, userId);
 
         if (created == null) {
             throw new VoteCantBeChangedException();

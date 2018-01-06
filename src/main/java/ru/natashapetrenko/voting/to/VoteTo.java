@@ -2,8 +2,7 @@ package ru.natashapetrenko.voting.to;
 
 import java.time.LocalDateTime;
 
-public class VoteTo {
-    private final Integer id;
+public class VoteTo extends BaseTo{
 
     private final LocalDateTime dateTime;
 
@@ -11,13 +10,9 @@ public class VoteTo {
     private final String restaurant;
 
     public VoteTo(Integer id, LocalDateTime dateTime, String restaurant) {
-        this.id = id;
+        super(id);
         this.dateTime = dateTime;
         this.restaurant = restaurant;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public LocalDateTime getDateTime() {

@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS dishes
   restaurant_id INTEGER      NOT NULL,
   FOREIGN KEY (restaurant_id) REFERENCES RESTAURANTS (id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX IF NOT EXISTS dishes_unique_restaurant_date_idx ON dishes (restaurant_id, date);
+-- CREATE UNIQUE INDEX IF NOT EXISTS dishes_unique_restaurant_date_idx ON dishes (restaurant_id, date);
 
 CREATE TABLE IF NOT EXISTS votes
 (

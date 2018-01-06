@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 
-public class DishTo {
-    private final Integer id;
+public class DishTo extends BaseTo{
 
     private final LocalDate date;
 
@@ -20,15 +19,11 @@ public class DishTo {
                   @JsonProperty("description") String description,
                   @JsonProperty("price") int price,
                   @JsonProperty("restaurant_id") Integer restaurant_id) {
-        this.id = id;
+        super(id);
         this.date = date;
         this.description = description;
         this.price = price;
         this.restaurant = restaurant_id;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public LocalDate getDate() {

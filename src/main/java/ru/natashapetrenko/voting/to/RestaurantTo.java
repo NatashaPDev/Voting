@@ -1,9 +1,6 @@
 package ru.natashapetrenko.voting.to;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 public class RestaurantTo extends BaseTo{
 

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.natashapetrenko.voting.model.Dish;
+import ru.natashapetrenko.voting.model.Restaurant;
 import ru.natashapetrenko.voting.repository.DishRepository;
 
 import java.time.LocalDate;
@@ -44,6 +45,11 @@ public class DataJpaDishRepositoryImpl implements DishRepository {
     @Override
     public List<Dish> getByDate(LocalDate date, int restaurantId) {
         return crudDishRepository.getByDate(date, restaurantId);
+    }
+
+    @Override
+    public List<Restaurant> getRestaurantsByDate(LocalDate date) {
+        return crudDishRepository.getRestaurantsByDate(date);
     }
 
 }

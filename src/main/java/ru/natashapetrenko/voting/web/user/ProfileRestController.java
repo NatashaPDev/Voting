@@ -25,8 +25,4 @@ public class ProfileRestController extends AbstractUserController {
         super.update(user, AuthorizedUser.id());
     }
 
-    @GetMapping(value = "/text")
-    public String testUTF() {
-        return "Русский текст";
-    }
 }

@@ -32,18 +32,13 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
-    public boolean delete(int id, int userId) {
-        return crudVoteRepository.delete(id, userId) != 0;
-    }
-
-    @Override
     public Vote get(int id, int userId) {
         return crudVoteRepository.findById(id).filter(vote -> vote.getUser().getId() == userId).orElse(null);
     }
 
     @Override
-    public List<Vote> getAll(int userId) {
-        return crudVoteRepository.getAll(userId);
+    public List<Vote> getAll() {
+        return crudVoteRepository.getAll();
     }
 
     @Override

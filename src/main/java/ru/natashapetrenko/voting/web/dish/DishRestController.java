@@ -2,6 +2,7 @@ package ru.natashapetrenko.voting.web.dish;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.natashapetrenko.voting.service.DishService;
 import ru.natashapetrenko.voting.to.DishTo;
@@ -18,6 +19,7 @@ public class DishRestController{
     private DishService service;
 
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<DishTo> getAll() {
         return DishesUtil.getAll(service.getAll());
     }

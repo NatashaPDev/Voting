@@ -2,6 +2,7 @@ package ru.natashapetrenko.voting.web.user;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.natashapetrenko.voting.model.User;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(AdminRestController.REST_URL)
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminRestController extends AbstractUserController {
     static final String REST_URL = "/rest/admin/users";
 
@@ -29,9 +31,6 @@ public class AdminRestController extends AbstractUserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createWithLocation(@RequestBody User user) {
         User created = super.create(user);
-
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.setLocation(uriOfNewResource);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")

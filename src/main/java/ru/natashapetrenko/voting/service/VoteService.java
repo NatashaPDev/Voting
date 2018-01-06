@@ -10,15 +10,10 @@ import java.time.LocalTime;
 import java.util.List;
 
 public interface VoteService {
-    Vote get(int id, int userId) throws NotFoundException;
-
-    void delete(int id, int userId) throws NotFoundException;
 
     List<Vote> getBetweenDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId);
 
-    List<Vote> getAll(int userId);
-
-    Vote update(Vote dish, int userId) throws NotFoundException;
+    List<Vote> getAll();
 
     Vote create(Vote dish, int userId);
 }

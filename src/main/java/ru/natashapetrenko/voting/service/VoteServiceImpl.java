@@ -25,23 +25,8 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public Vote get(int id, int userId) {
-        return checkNotFoundWithId(repository.get(id, userId), id);
-    }
-
-    @Override
-    public void delete(int id, int userId) {
-        checkNotFoundWithId(repository.delete(id, userId), id);
-    }
-
-    @Override
-    public List<Vote> getAll(int userId) {
-        return repository.getAll(userId);
-    }
-
-    @Override
-    public Vote update(Vote vote, int userId) {
-        return checkNotFoundWithId(repository.save(vote, userId), vote.getId());
+    public List<Vote> getAll() {
+        return repository.getAll();
     }
 
     @Override
@@ -65,7 +50,9 @@ public class VoteServiceImpl implements VoteService {
                 return null;
             } else {
                 Vote currentVote = currentVotes.get(0);
-                repository.delete(currentVote.getId(), currentVote.getUser().getId());
+                currentVote.setDateTime(vote.getDateTime());
+                currentVote.setRestaurant(vote.getRestaurant());
+                return repository.save(currentVote, userId);
             }
         }
         return repository.save(vote, userId);

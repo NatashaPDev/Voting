@@ -1,6 +1,7 @@
 package ru.natashapetrenko.voting.service;
 
 import ru.natashapetrenko.voting.model.Dish;
+import ru.natashapetrenko.voting.model.Restaurant;
 import ru.natashapetrenko.voting.util.exception.NotFoundException;
 
 import java.time.LocalDate;
@@ -18,4 +19,6 @@ public interface DishService {
     Dish update(Dish dish, int restaurantId) throws NotFoundException;
 
     Dish create(Dish dish, int restaurantId);
+
+    List<Restaurant> getRestaurantsByDate(LocalDate date);
 }

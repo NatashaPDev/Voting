@@ -15,7 +15,7 @@ import java.time.LocalTime;
                 "WHERE m.date=:date AND m.restaurant.id = :restaurant_id"),
 })
 @Entity
-@Table(name = "dishes", uniqueConstraints = {@UniqueConstraint(columnNames = {"restaurant_id", "date"}, name = "dishes_unique_user_datetime_idx")})
+@Table(name = "dishes")
 public class Dish extends AbstractBaseEntity {
     public static final String ALL_SORTED = "Dish.getAll";
     public static final String DELETE = "Dish.delete";
