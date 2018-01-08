@@ -3,13 +3,14 @@ package ru.natashapetrenko.voting.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.natashapetrenko.voting.model.User;
 import ru.natashapetrenko.voting.AuthorizedUser;
-import ru.natashapetrenko.voting.repository.UserRepository;
+import ru.natashapetrenko.voting.repository.datajpa.CrudUserRepository;
 import ru.natashapetrenko.voting.util.exception.NotFoundException;
 
 import java.util.List;
@@ -19,13 +20,10 @@ import static ru.natashapetrenko.voting.util.ValidationUtil.checkNotFoundWithId;
 
 @Service("userService")
 public class UserServiceImpl implements UserService, UserDetailsService{
-
-    private final UserRepository repository;
+    private static final Sort SORT_NAME_EMAIL = new Sort(Sort.Direction.ASC, "name", "email");
 
     @Autowired
-    public UserServiceImpl(UserRepository repository) {
-        this.repository = repository;
-    }
+    private CrudUserRepository repository;
 
     @CacheEvict(value = "users", allEntries = true)
     @Override
@@ -42,7 +40,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 
     @Override
     public User get(int id) throws NotFoundException {
-        return checkNotFoundWithId(repository.get(id), id);
+        return checkNotFoundWithId(repository.findById(id).orElse(null), id);
     }
 
     @Override
@@ -54,7 +52,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     @Cacheable("users")
     @Override
     public List<User> getAll() {
-        return repository.getAll();
+        return repository.findAll(SORT_NAME_EMAIL);
     }
 
     @CacheEvict(value = "users", allEntries = true)

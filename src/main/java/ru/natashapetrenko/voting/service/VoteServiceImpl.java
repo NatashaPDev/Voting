@@ -3,36 +3,36 @@ package ru.natashapetrenko.voting.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import ru.natashapetrenko.voting.model.Dish;
 import ru.natashapetrenko.voting.model.Vote;
-import ru.natashapetrenko.voting.repository.VoteRepository;
+import ru.natashapetrenko.voting.repository.datajpa.CrudUserRepository;
+import ru.natashapetrenko.voting.repository.datajpa.CrudVoteRepository;
+import ru.natashapetrenko.voting.util.exception.VoteCantBeChangedException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import static ru.natashapetrenko.voting.util.ValidationUtil.checkNotFoundWithId;
-
 @Service
 public class VoteServiceImpl implements VoteService {
 
-    private final VoteRepository repository;
+    private static final int LIMIT_HOUR = 11;
 
     @Autowired
-    public VoteServiceImpl(VoteRepository repository) {
-        this.repository = repository;
-    }
+    private CrudVoteRepository voteRepository;
+
+    @Autowired
+    private CrudUserRepository userRepository;
 
     @Override
     public List<Vote> getAll() {
-        return repository.getAll();
+        return voteRepository.getAll();
     }
 
     @Override
     public List<Vote> getBetweenDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId) {
         Assert.notNull(startDateTime, "startDateTime must not be null");
-        return repository.getBetween(startDateTime, endDateTime, userId);
+        return voteRepository.getBetween(startDateTime, endDateTime, userId);
     }
 
     @Override
@@ -46,15 +46,17 @@ public class VoteServiceImpl implements VoteService {
                 userId);
 
         if (!currentVotes.isEmpty()) {
-            if (vote.getTime().compareTo(LocalTime.of(11, 0)) > 0) {
-                return null;
+            if (vote.getTime().compareTo(LocalTime.of(LIMIT_HOUR, 0)) > 0) {
+                throw new VoteCantBeChangedException();
             } else {
                 Vote currentVote = currentVotes.get(0);
                 currentVote.setDateTime(vote.getDateTime());
                 currentVote.setRestaurant(vote.getRestaurant());
-                return repository.save(currentVote, userId);
+                return voteRepository.save(vote);
             }
         }
-        return repository.save(vote, userId);
+        vote.setUser(userRepository.getOne(userId));
+        return voteRepository.save(vote);
     }
+
 }

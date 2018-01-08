@@ -19,10 +19,4 @@ public class ProfileRestController extends AbstractUserController {
     public void delete() {
         super.delete(AuthorizedUser.id());
     }
-
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody User user) {
-        super.update(user, AuthorizedUser.id());
-    }
-
 }

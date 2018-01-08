@@ -1,6 +1,5 @@
 package ru.natashapetrenko.voting.util;
 
-
 import ru.natashapetrenko.voting.model.AbstractBaseEntity;
 import ru.natashapetrenko.voting.util.exception.NotFoundException;
 
@@ -35,7 +34,6 @@ public class ValidationUtil {
     }
 
     public static void assureIdConsistent(AbstractBaseEntity entity, int id) {
-//      http://stackoverflow.com/a/32728226/548473
         if (entity.isNew()) {
             entity.setId(id);
         } else if (entity.getId() != id) {

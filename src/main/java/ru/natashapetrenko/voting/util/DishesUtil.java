@@ -3,7 +3,6 @@ package ru.natashapetrenko.voting.util;
 import ru.natashapetrenko.voting.model.Dish;
 import ru.natashapetrenko.voting.to.DishTo;
 
-import java.time.LocalTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class DishesUtil {
 
     public static List<DishTo> getAll(Collection<Dish> dishes) {
         return dishes.stream()
-                .map(dish -> asTo(dish))
+                .map(DishesUtil::asTo)
                 .collect(toList());
     }
 

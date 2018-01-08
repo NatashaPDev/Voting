@@ -15,12 +15,12 @@ public class VotesUtil {
     public static List<VoteTo> getAll(Collection<Vote> votes) {
 
         return votes.stream()
-                .map(vote -> createVoteTO(vote))
+                .map(VotesUtil::createVoteTO)
                 .collect(toList());
     }
 
     private static VoteTo createVoteTO(Vote vote) {
-        return new VoteTo(vote.getId(), vote.getDateTime(), vote.getRestaurant().getName());
+        return new VoteTo(vote.getId(), vote.getDateTime(), vote.getRestaurant().getId(), vote.getUser().getId());
     }
 
 }

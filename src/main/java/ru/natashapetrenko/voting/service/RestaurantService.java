@@ -3,7 +3,6 @@ package ru.natashapetrenko.voting.service;
 import ru.natashapetrenko.voting.model.Restaurant;
 import ru.natashapetrenko.voting.util.exception.NotFoundException;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface RestaurantService {

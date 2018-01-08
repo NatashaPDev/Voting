@@ -1,25 +1,15 @@
 package ru.natashapetrenko.voting.model;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @SuppressWarnings("JpaQlInspection")
-@NamedQueries({
-        @NamedQuery(name = Dish.ALL_SORTED, query = "SELECT m FROM Dish m ORDER BY m.date DESC"),
-        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish m WHERE m.id=:id"),
-        @NamedQuery(name = Dish.GET_BY_DATE, query = "SELECT m FROM Dish m " +
-                "WHERE m.date=:date AND m.restaurant.id = :restaurant_id"),
-})
 @Entity
 @Table(name = "dishes")
 public class Dish extends AbstractBaseEntity {
-    public static final String ALL_SORTED = "Dish.getAll";
-    public static final String DELETE = "Dish.delete";
-    public static final String GET_BY_DATE = "Dish.GET_BY_DATE";
 
     @Column(name = "date", nullable = false)
     @NotNull
@@ -38,17 +28,6 @@ public class Dish extends AbstractBaseEntity {
     private Restaurant restaurant;
 
     public Dish() {
-    }
-
-    public Dish(LocalDate date, String description, int price) {
-        this(null, date, description, price);
-    }
-
-    public Dish(Integer id, LocalDate date, String description, int price) {
-        super(id);
-        this.date = date;
-        this.description = description;
-        this.price = price;
     }
 
     public LocalDate getDate() {

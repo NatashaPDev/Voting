@@ -40,10 +40,6 @@ public class VoteRestController{
         checkNew(vote);
         Vote created = service.create(vote, userId);
 
-        if (created == null) {
-            throw new VoteCantBeChangedException();
-        }
-
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(created.getId()).toUri();

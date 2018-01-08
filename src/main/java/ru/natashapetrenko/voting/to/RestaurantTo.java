@@ -7,9 +7,6 @@ public class RestaurantTo extends BaseTo{
     @NotBlank
     private String name;
 
-    public RestaurantTo() {
-    }
-
     public RestaurantTo(Integer id, String name) {
         super(id);
         this.name = name;
