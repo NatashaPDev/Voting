@@ -2,7 +2,7 @@
 
 [2. Caching](https://github.com/NatashaPDev/Voting#Caching)
 
-#API Documentation
+# API Documentation
 
 Get all users
 ----
@@ -517,7 +517,7 @@ Returns json data about all history of votes.
     
     `curl -s http://localhost:8081/voting/rest/votes --user admin@gmail.com:admin`
                     
-#Caching 
+# Caching 
 
 2nd Level
 ----        
