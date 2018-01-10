@@ -1,3 +1,7 @@
+[1. API documentation](https://github.com/NatashaPDev/Voting#API-Documentation)
+
+[2. Caching](https://github.com/NatashaPDev/Voting#Caching)
+
 #API Documentation
 
 Get all users
@@ -513,3 +517,18 @@ Returns json data about all history of votes.
     
     `curl -s http://localhost:8081/voting/rest/votes --user admin@gmail.com:admin`
                     
+#Caching 
+
+2nd Level
+----        
+         
+* **User**
+* **Restaurant**
+* **Dish**
+
+3rd Level
+----
+
+* **`UserServiceImpl List<User> getAll()`**
+* **`DishServiceImpl List<Dish> getByDate(LocalDate date, int restaurantId)`**
+* **`DishServiceImpl List<Restaurant> getRestaurantsByDate(LocalDate date)`**          
