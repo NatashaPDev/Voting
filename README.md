@@ -1,4 +1,4 @@
-[1. API documentation](https://github.com/NatashaPDev/Voting#API-Documentation)
+[1. API documentation](https://github.com/NatashaPDev/Voting#api-documentation)
 
 [2. Caching](https://github.com/NatashaPDev/Voting#caching)
 
