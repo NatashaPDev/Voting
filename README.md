@@ -1,6 +1,6 @@
 [1. API documentation](https://github.com/NatashaPDev/Voting#API-Documentation)
 
-[2. Caching](https://github.com/NatashaPDev/Voting#Caching)
+[2. Caching](https://github.com/NatashaPDev/Voting#caching)
 
 # API Documentation
 
