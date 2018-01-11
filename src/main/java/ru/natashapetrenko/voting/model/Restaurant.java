@@ -19,6 +19,10 @@ public class Restaurant extends AbstractNamedEntity {
         super(id, "");
     }
 
+    public Restaurant(Integer id, String name) {
+        super(id, name);
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
