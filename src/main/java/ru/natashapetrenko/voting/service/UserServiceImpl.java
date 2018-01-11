@@ -7,9 +7,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import ru.natashapetrenko.voting.model.User;
 import ru.natashapetrenko.voting.AuthorizedUser;
+import ru.natashapetrenko.voting.model.User;
 import ru.natashapetrenko.voting.repository.datajpa.CrudUserRepository;
 import ru.natashapetrenko.voting.util.exception.NotFoundException;
 
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     @CacheEvict(value = "users", allEntries = true)
     @Override
     public void delete(int id) throws NotFoundException {
-        checkNotFoundWithId(repository.delete(id), id);
+        checkNotFoundWithId(repository.delete(id) != 0, id);
     }
 
     @Override
@@ -60,6 +61,15 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
         checkNotFoundWithId(repository.save(user), user.getId());
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Override
+    @Transactional
+    public void enable(int id, boolean enabled) {
+        User user = get(id);
+        user.setEnabled(enabled);
+        repository.save(user);
     }
 
     @Override

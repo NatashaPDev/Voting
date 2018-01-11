@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>Voting</name>
-    <url></url>
 
     <properties>
         <java.version>1.8</java.version>
@@ -25,8 +24,6 @@
         <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.25</slf4j.version>
 
-        <!--DB-->
-        <postgresql.version>42.1.4</postgresql.version>
         <!--    Tests  -->
         <junit.version>4.12</junit.version>
 
@@ -38,7 +35,7 @@
     </properties>
 
     <build>
-        <finalName>topjava</finalName>
+        <finalName>voting</finalName>
         <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>
@@ -123,6 +120,10 @@
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring-data-jpa.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -140,12 +141,8 @@
             <version>${spring-security.version}</version>
         </dependency>
 
+
         <!--DataBase-->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
@@ -193,12 +190,6 @@
             <version>${ehcache.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-
-        <!--http://hibernate.org/validator/documentation/getting-started/#unified-expression-language-el-->
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.el</artifactId>

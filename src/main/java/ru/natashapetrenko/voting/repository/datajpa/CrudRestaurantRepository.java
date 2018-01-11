@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.natashapetrenko.voting.model.Restaurant;
-import ru.natashapetrenko.voting.model.User;
 
 import java.util.List;
 import java.util.Optional;

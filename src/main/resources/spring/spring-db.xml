@@ -51,6 +51,8 @@
         </property>
     </bean>
 
+    <bean class="ru.natashapetrenko.voting.repository.JpaUtil"/>
+
     <tx:annotation-driven/>
 
     <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->

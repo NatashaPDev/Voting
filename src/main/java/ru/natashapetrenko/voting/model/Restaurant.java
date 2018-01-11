@@ -1,8 +1,13 @@
 package ru.natashapetrenko.voting.model;
 
-import javax.persistence.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @SuppressWarnings("JpaQlInspection")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 @Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity {

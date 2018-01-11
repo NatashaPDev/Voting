@@ -1,17 +1,17 @@
 package ru.natashapetrenko.voting.model;
 
+import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.EnumSet;
-import java.util.Set;
+import java.util.*;
 
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
 public class User extends AbstractNamedEntity {
@@ -35,7 +35,7 @@ public class User extends AbstractNamedEntity {
     @NotNull
     private Date registered = new Date();
 
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
@@ -46,18 +46,19 @@ public class User extends AbstractNamedEntity {
     }
 
     public User(User u) {
-        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRoles());
+        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRegistered(), u.getRoles());
     }
 
     public User(Integer id, String name, String email, String password, Role role, Role... roles) {
-        this(id, name, email, password, true, EnumSet.of(role, roles));
+        this(id, name, email, password, true, new Date(), EnumSet.of(role, roles));
     }
 
-    public User(Integer id, String name, String email, String password, boolean enabled, Set<Role> roles) {
+    public User(Integer id, String name, String email, String password, boolean enabled, Date registered, Set<Role> roles) {
         super(id, name);
         this.email = email;
         this.password = password;
         this.enabled = enabled;
+        this.registered = registered;
         this.roles = roles;
     }
 
@@ -95,6 +96,10 @@ public class User extends AbstractNamedEntity {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = CollectionUtils.isEmpty(roles) ? Collections.emptySet() : EnumSet.copyOf(roles);
     }
 
     @Override

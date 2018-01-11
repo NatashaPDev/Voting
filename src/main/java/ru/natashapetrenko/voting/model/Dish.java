@@ -1,12 +1,15 @@
 package ru.natashapetrenko.voting.model;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
-import javax.validation.Constraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @SuppressWarnings("JpaQlInspection")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 @Table(name = "dishes")
 public class Dish extends AbstractBaseEntity {

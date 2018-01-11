@@ -18,12 +18,12 @@ public class DishTo extends BaseTo{
                   @JsonProperty("date") LocalDate date,
                   @JsonProperty("description") String description,
                   @JsonProperty("price") int price,
-                  @JsonProperty("restaurant_id") Integer restaurant_id) {
+                  @JsonProperty("restaurant_id") Integer restaurantId) {
         super(id);
         this.date = date;
         this.description = description;
         this.price = price;
-        this.restaurant = restaurant_id;
+        this.restaurant = restaurantId;
     }
 
     public LocalDate getDate() {
