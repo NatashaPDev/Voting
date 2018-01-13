@@ -6,7 +6,7 @@
 
 Get all users
 ----
-  Returns json data about users. Only for admins.
+  Returns JSON data about users. Only for admins.
     
 * **URL**
 
@@ -62,7 +62,7 @@ Get all users
 
 Get user
 ----
-Returns json data about a single user.
+Returns JSON data about a single user.
     
 * **URL**
 
@@ -168,7 +168,7 @@ Add user
 
 Get restaurants
 ----
-Returns json data about restaurants. With "date" parameter returns only restaurants having a menu for the date.
+Returns JSON data about restaurants. With "date" parameter returns only restaurants having a menu for the date.
     
 * **URL**
 
@@ -217,7 +217,7 @@ Returns json data about restaurants. With "date" parameter returns only restaura
    
 Add restaurant
 ----
-Creates a new restaurant from json data. Only for admins.
+Creates a new restaurant from JSON data. Only for admins.
     
 * **URL**
 
@@ -261,7 +261,7 @@ Creates a new restaurant from json data. Only for admins.
  
 Get restaurant menu by date
 ----
-Returns json data about dishes in the restaurant for the date.
+Returns JSON data about dishes in the restaurant for the date.
     
 * **URL**
 
@@ -312,7 +312,7 @@ Returns json data about dishes in the restaurant for the date.
     
 Add dish
 ----
-Adds a new dish in restaurant from json data. Only for admins.
+Adds a new dish to a restaurant from JSON data. Only for admins.
     
 * **URL**
 
@@ -367,7 +367,7 @@ Adds a new dish in restaurant from json data. Only for admins.
             
 Post vote
 ----
-Add a new vote for the restaurant from user. If user votes again the same day and it is after 11:00 then vote can't be changed.
+Adds a new vote for the restaurant from a user. If a user votes again the same day and it is after 11:00 then vote can't be changed.
     
 * **URL**
 
@@ -416,7 +416,7 @@ Add a new vote for the restaurant from user. If user votes again the same day an
  
 Get dishes history
 ----
-Returns json data about all history of dishes.
+Returns JSON data about all history of dishes.
     
 * **URL**
 
@@ -468,7 +468,7 @@ Returns json data about all history of dishes.
     
 Get votes history
 ----
-Returns json data about all history of votes.
+Returns JSON data about all history of votes.
     
 * **URL**
 
