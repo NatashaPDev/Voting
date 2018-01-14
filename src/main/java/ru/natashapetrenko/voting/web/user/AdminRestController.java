@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping(AdminRestController.REST_URL)
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminRestController extends AbstractUserController {
-    static final String REST_URL = "/rest/admin/users";
+    public static final String REST_URL = "/rest/admin/users";
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

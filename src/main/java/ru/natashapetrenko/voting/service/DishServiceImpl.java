@@ -32,7 +32,7 @@ public class DishServiceImpl implements DishService {
     @CacheEvict(value = {"restaurants_by_date", "dishes_by_date"}, allEntries = true)
     @Override
     public void delete(int id) {
-        checkNotFoundWithId(crudDishRepository.delete(id), id);
+        checkNotFoundWithId(crudDishRepository.delete(id) != 0, id);
     }
 
     @Override

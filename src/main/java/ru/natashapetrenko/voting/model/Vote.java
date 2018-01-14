@@ -28,6 +28,12 @@ public class Vote extends AbstractBaseEntity {
     public Vote() {
     }
 
+    public Vote(Integer id, LocalDateTime dateTime, Restaurant restaurant) {
+        super(id);
+        this.dateTime = dateTime;
+        this.restaurant = restaurant;
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
@@ -64,8 +70,6 @@ public class Vote extends AbstractBaseEntity {
     public String toString() {
         return "Vote{" +
                 "dateTime=" + dateTime +
-                ", user=" + user +
-                ", restaurant=" + restaurant +
                 ", id=" + id +
                 '}';
     }
