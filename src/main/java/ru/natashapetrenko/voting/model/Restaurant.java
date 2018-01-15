@@ -23,6 +23,10 @@ public class Restaurant extends AbstractNamedEntity {
         super(id, name);
     }
 
+    public Restaurant(Restaurant restaurant) {
+        super(restaurant.getId(), restaurant.getName());
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +

@@ -5,13 +5,15 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import ru.natashapetrenko.voting.model.Restaurant;
+import ru.natashapetrenko.voting.repository.JpaUtil;
 import ru.natashapetrenko.voting.util.exception.NotFoundException;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 import static ru.natashapetrenko.voting.RestaurantTestData.*;
 
-public abstract class AbstractRestaurantServiceTest extends AbstractServiceTest {
+public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Autowired
     protected RestaurantService service;
@@ -19,9 +21,18 @@ public abstract class AbstractRestaurantServiceTest extends AbstractServiceTest 
     @Autowired
     private CacheManager cacheManager;
 
+    @Autowired
+    private JpaUtil jpaUtil;
+
+    @Test
+    public void testValidation() {
+        validateRootCause(() -> service.create(new Restaurant(null, "  ")), ConstraintViolationException.class);
+    }
+
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         cacheManager.getCache("restaurants").clear();
+        jpaUtil.clear2ndLevelHibernateCache();
     }
 
     @Test

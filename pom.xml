@@ -26,6 +26,7 @@
 
         <!--    Tests  -->
         <junit.version>4.12</junit.version>
+        <jsonassert.version>1.5.0</jsonassert.version>
 
         <!-- Hibernate -->
         <hibernate.version>5.2.12.Final</hibernate.version>
@@ -227,6 +228,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>${jsonassert.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>

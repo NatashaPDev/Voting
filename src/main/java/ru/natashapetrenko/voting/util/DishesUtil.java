@@ -1,6 +1,7 @@
 package ru.natashapetrenko.voting.util;
 
 import ru.natashapetrenko.voting.model.Dish;
+import ru.natashapetrenko.voting.model.Restaurant;
 import ru.natashapetrenko.voting.to.DishTo;
 
 import java.util.Collection;
@@ -19,8 +20,15 @@ public class DishesUtil {
                 .collect(toList());
     }
 
-    private static DishTo asTo(Dish dish) {
-        return new DishTo(dish.getId(), dish.getDate(), dish.getDescription(), dish.getPrice(), dish.getRestaurant().getId());
+    public static DishTo asTo(Dish dish) {
+        int restaurantId;
+        Restaurant restaurant = dish.getRestaurant();
+        if (restaurant != null) {
+            restaurantId = restaurant.getId();
+        } else {
+            restaurantId = 0;
+        }
+        return new DishTo(dish.getId(), dish.getDate(), dish.getDescription(), dish.getPrice(), restaurantId);
     }
 
 }

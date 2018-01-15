@@ -10,7 +10,7 @@ import java.time.Month;
 import static ru.natashapetrenko.voting.UserTestData.USER_ID;
 import static ru.natashapetrenko.voting.VoteTestData.*;
 
-public abstract class AbstractVoteServiceTest extends AbstractServiceTest {
+public class VoteServiceTest extends AbstractServiceTest {
 
     @Autowired
     protected VoteService service;

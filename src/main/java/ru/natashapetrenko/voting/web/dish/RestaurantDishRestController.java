@@ -28,8 +28,8 @@ public class RestaurantDishRestController{
     private DishService service;
 
     @GetMapping("/{id}")
-    public Dish get(@PathVariable("id") int id) {
-        return service.get(id);
+    public DishTo get(@PathVariable("id") int id) {
+        return DishesUtil.asTo(service.get(id));
     }
 
     @DeleteMapping("/{id}")

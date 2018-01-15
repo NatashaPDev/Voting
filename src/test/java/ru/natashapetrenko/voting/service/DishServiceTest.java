@@ -12,9 +12,10 @@ import java.time.Month;
 
 import static java.time.LocalDate.of;
 import static ru.natashapetrenko.voting.DishTestData.*;
+import static ru.natashapetrenko.voting.RestaurantTestData.RESTAURANT1;
 import static ru.natashapetrenko.voting.RestaurantTestData.RESTAURANT1_ID;
 
-public abstract class AbstractDishServiceTest extends AbstractServiceTest {
+public class DishServiceTest extends AbstractServiceTest {
 
     @Autowired
     protected DishService service;
@@ -70,7 +71,7 @@ public abstract class AbstractDishServiceTest extends AbstractServiceTest {
 
     @Test
     public void testValidation() {
-        validateRootCause(() -> service.create(new Dish(null, of(2018, Month.JANUARY, 1), "  ", 300), RESTAURANT1_ID), ConstraintViolationException.class);
-        validateRootCause(() -> service.create(new Dish(null, null, "Description", 300), RESTAURANT1_ID), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new Dish(null, of(2018, Month.JANUARY, 1), "  ", 300, RESTAURANT1), RESTAURANT1_ID), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new Dish(null, null, "Description", 300, RESTAURANT1), RESTAURANT1_ID), ConstraintViolationException.class);
     }
 }

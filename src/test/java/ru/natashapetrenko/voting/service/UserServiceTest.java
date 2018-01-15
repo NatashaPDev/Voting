@@ -8,15 +8,17 @@ import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
 import ru.natashapetrenko.voting.model.Role;
 import ru.natashapetrenko.voting.model.User;
+import ru.natashapetrenko.voting.repository.JpaUtil;
 import ru.natashapetrenko.voting.util.exception.NotFoundException;
 
+import javax.validation.ConstraintViolationException;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import static ru.natashapetrenko.voting.UserTestData.*;
 
-public abstract class AbstractUserServiceTest extends AbstractServiceTest {
+public class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
     protected UserService service;
@@ -24,9 +26,20 @@ public abstract class AbstractUserServiceTest extends AbstractServiceTest {
     @Autowired
     private CacheManager cacheManager;
 
+    @Autowired
+    private JpaUtil jpaUtil;
+
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         cacheManager.getCache("users").clear();
+        jpaUtil.clear2ndLevelHibernateCache();
+    }
+
+    @Test
+    public void testValidation() {
+        validateRootCause(() -> service.create(new User(null, "  ", "mail@yandex.ru", "password", Role.ROLE_USER)), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(null, "User", "  ", "password", Role.ROLE_USER)), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(null, "User", "mail@yandex.ru", "  ", Role.ROLE_USER)), ConstraintViolationException.class);
     }
 
     @Test
