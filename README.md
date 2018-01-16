@@ -58,7 +58,7 @@ Get all users
 
 * **Sample Call:**
 
-  `curl -s http://localhost:8081/voting/rest/admin/users --user admin@gmail.com:admin`
+  `curl -s http://localhost:8080/voting/rest/admin/users --user admin@gmail.com:admin`
 
 Get user
 ----
@@ -105,7 +105,7 @@ Returns JSON data about a single user.
 
 * **Sample Call:**
 
-  `curl -s http://localhost:8081/voting/rest/admin/users/100001 --user admin@gmail.com:admin`
+  `curl -s http://localhost:8080/voting/rest/admin/users/100001 --user admin@gmail.com:admin`
   
 Add user
 ----
@@ -164,7 +164,7 @@ Add user
 
 * **Sample Call:**
 
-  `curl -s -X POST -d '{"name":"user3","email":"user3@yandex.ru","password":"password","enabled":true,"registered":"2018-01-03T10:54:53.575+0000","roles":["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8081/voting/rest/admin/users --user admin@gmail.com:admin`  
+  `curl -s -X POST -d '{"name":"user3","email":"user3@yandex.ru","password":"password","enabled":true,"registered":"2018-01-03T10:54:53.575+0000","roles":["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/voting/rest/admin/users --user admin@gmail.com:admin`  
 
 Get restaurants
 ----
@@ -212,7 +212,7 @@ Returns JSON data about restaurants. With "date" parameter returns only restaura
 
 * **Sample Call:**
     
-    `curl -s http://localhost:8081/voting/rest/restaurants?date=2018-01-01 --user admin@gmail.com:admin`
+    `curl -s http://localhost:8080/voting/rest/restaurants?date=2018-01-01 --user admin@gmail.com:admin`
        
    
 Add restaurant
@@ -257,7 +257,7 @@ Creates a new restaurant from JSON data. Only for admins.
 
 * **Sample Call:**
     
-    `curl -s -X POST -d '{"name":"Pizza"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8081/voting/rest/restaurants --user admin@gmail.com:admin`
+    `curl -s -X POST -d '{"name":"Pizza"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/voting/rest/restaurants --user admin@gmail.com:admin`
  
 Get restaurant menu by date
 ----
@@ -287,14 +287,14 @@ Returns JSON data about dishes in the restaurant for the date.
     **Content:** `[
                      {
                         "id": 100033,
-                        "date": "2015-06-03",
+                        "date": "2018-01-01",
                         "description": "Potato",
                         "price": 200,
                         "restaurant": 100002
                      },
                         {
                         "id": 100034,
-                        "date": "2015-06-03",
+                        "date": "2018-01-01",
                         "description": "Fish",
                         "price": 300,
                         "restaurant": 100002
@@ -307,7 +307,7 @@ Returns JSON data about dishes in the restaurant for the date.
 
 * **Sample Call:**
     
-    `curl -s http://localhost:8081/voting/rest/restaurants/100002/dishes?date=2015-06-03 --user user@yandex.ru:password`
+    `curl -s http://localhost:8080/voting/rest/restaurants/100002/dishes?date=2018-01-01 --user user@yandex.ru:password`
  
     
 Add dish
@@ -345,7 +345,7 @@ Adds a new dish to a restaurant from JSON data. Only for admins.
   * **Code:** 201 <br />
     **Content:** `{
                      "id": 100033,
-                     "date": "2015-06-03",
+                     "date": "2018-01-03",
                      "description": "Fish",
                      "price": 300,
                      "restaurant": null
@@ -361,7 +361,7 @@ Adds a new dish to a restaurant from JSON data. Only for admins.
 
 * **Sample Call:**
     
-    `curl -s -X POST -d '{"date":"2015-06-03","description":"Fish","price":300}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8081/voting/rest/restaurants/100002/dishes --user admin@gmail.com:admin`
+    `curl -s -X POST -d '{"date":"2018-01-03","description":"Fish","price":300}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/voting/rest/restaurants/100002/dishes --user admin@gmail.com:admin`
     
 
             
@@ -396,9 +396,9 @@ Adds a new vote for the restaurant from a user. If a user votes again the same d
   * **Code:** 201 <br />
     **Content:** `{
                      "id": 100035,
-                     "dateTime": "2015-06-01T10:30:00",
+                     "dateTime": "2018-01-03T10:30:00",
                      "user": null,
-                     "restaurant": {"id": 100003}
+                     "restaurant": {"id": 100002}
                   }`
  
 * **Error Response:**
@@ -412,7 +412,7 @@ Adds a new vote for the restaurant from a user. If a user votes again the same d
 
 * **Sample Call:**
     
-    `curl -s -X POST -d '{"dateTime":"2015-06-01T10:30","restaurant":{"id":100003}}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8081/voting/rest/votes --user user@yandex.ru:password`
+    `curl -s -X POST -d '{"dateTime":"2015-01-03T10:30","restaurant":{"id":100002}}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/voting/rest/votes --user user@yandex.ru:password`
  
 Get dishes history
 ----
@@ -464,7 +464,7 @@ Returns JSON data about all history of dishes.
 
 * **Sample Call:**
     
-    `curl -s http://localhost:8081/voting/rest/dishes --user admin@gmail.com:admin` 
+    `curl -s http://localhost:8080/voting/rest/dishes --user admin@gmail.com:admin` 
     
 Get votes history
 ----
@@ -515,7 +515,7 @@ Returns JSON data about all history of votes.
 
 * **Sample Call:**
     
-    `curl -s http://localhost:8081/voting/rest/votes --user admin@gmail.com:admin`
+    `curl -s http://localhost:8080/voting/rest/votes --user admin@gmail.com:admin`
                     
 # Caching 
 
