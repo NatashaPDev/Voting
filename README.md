@@ -125,7 +125,7 @@ Add user
   
 * **Data Params**
 
-  `{
+  {
   
   "name":[string],
   
