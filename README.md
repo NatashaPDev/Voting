@@ -1,5 +1,16 @@
 [1. API documentation](https://github.com/NatashaPDev/Voting#api-documentation)
 
+* [Get all users](https://github.com/NatashaPDev/Voting#get-all-users)
+* [Get user](https://github.com/NatashaPDev/Voting#get-user)
+* [Add user](https://github.com/NatashaPDev/Voting#add-user)
+* [Get restaurants](https://github.com/NatashaPDev/Voting#get-restaurants)
+* [Add restaurant](https://github.com/NatashaPDev/Voting#add-restaurant)
+* [Get restaurant menu by date](https://github.com/NatashaPDev/Voting#get-restaurant-menu-by-date)
+* [Add dish](https://github.com/NatashaPDev/Voting#add-dish)
+* [Post vote](https://github.com/NatashaPDev/Voting#post-vote)
+* [Get dishes history](https://github.com/NatashaPDev/Voting#get-dishes-history)
+* [Get votes history](https://github.com/NatashaPDev/Voting#get-votes-history)
+
 [2. Caching](https://github.com/NatashaPDev/Voting#caching)
 
 # API Documentation

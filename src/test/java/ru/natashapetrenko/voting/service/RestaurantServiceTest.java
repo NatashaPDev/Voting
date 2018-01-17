@@ -3,7 +3,6 @@ package ru.natashapetrenko.voting.service;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
 import ru.natashapetrenko.voting.model.Restaurant;
 import ru.natashapetrenko.voting.repository.JpaUtil;
 import ru.natashapetrenko.voting.util.exception.NotFoundException;
@@ -19,9 +18,6 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     protected RestaurantService service;
 
     @Autowired
-    private CacheManager cacheManager;
-
-    @Autowired
     private JpaUtil jpaUtil;
 
     @Test
@@ -31,7 +27,6 @@ public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Before
     public void setUp() {
-        cacheManager.getCache("restaurants").clear();
         jpaUtil.clear2ndLevelHibernateCache();
     }
 
