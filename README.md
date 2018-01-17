@@ -1,4 +1,4 @@
-[1. API documentation](https://github.com/NatashaPDev/Voting#api-documentation)
+[API documentation](https://github.com/NatashaPDev/Voting#api-documentation)
 
 * [Get all users](https://github.com/NatashaPDev/Voting#get-all-users)
 * [Get user](https://github.com/NatashaPDev/Voting#get-user)
@@ -11,7 +11,7 @@
 * [Get dishes history](https://github.com/NatashaPDev/Voting#get-dishes-history)
 * [Get votes history](https://github.com/NatashaPDev/Voting#get-votes-history)
 
-[2. Caching](https://github.com/NatashaPDev/Voting#caching)
+[Caching](https://github.com/NatashaPDev/Voting#caching)
 
 # API Documentation
 
