@@ -537,7 +537,7 @@ Returns JSON data about all history of votes.
 * **Restaurant**
 * **Dish**
 
-3rd Level
+Query
 ----
 
 * **`UserServiceImpl List<User> getAll()`**
