@@ -9,7 +9,6 @@ import ru.natashapetrenko.voting.repository.datajpa.CrudVoteRepository;
 import ru.natashapetrenko.voting.util.exception.VoteCantBeChangedException;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -30,9 +29,9 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public List<Vote> getBetweenDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId) {
-        Assert.notNull(startDateTime, "startDateTime must not be null");
-        return voteRepository.getBetween(startDateTime, endDateTime, userId);
+    public List<Vote> getByDate(LocalDate date, int userId) {
+        Assert.notNull(date, "date must not be null");
+        return voteRepository.getByDate(date, userId);
     }
 
     @Override
@@ -41,16 +40,15 @@ public class VoteServiceImpl implements VoteService {
         Assert.notNull(vote, "vote must not be null");
 
         LocalDate currentDate = vote.getDate();
-        List<Vote> currentVotes = getBetweenDateTimes(LocalDateTime.of(currentDate, LocalTime.MIN),
-                LocalDateTime.of(currentDate, LocalTime.MAX),
-                userId);
+        List<Vote> currentVotes = getByDate(currentDate, userId);
 
         if (!currentVotes.isEmpty()) {
             if (vote.getTime().compareTo(LocalTime.of(LIMIT_HOUR, 0)) > 0) {
                 throw new VoteCantBeChangedException();
             } else {
                 Vote currentVote = currentVotes.get(0);
-                currentVote.setDateTime(vote.getDateTime());
+                currentVote.setDate(vote.getDate());
+                currentVote.setTime(vote.getTime());
                 currentVote.setRestaurant(vote.getRestaurant());
                 return voteRepository.save(vote);
             }

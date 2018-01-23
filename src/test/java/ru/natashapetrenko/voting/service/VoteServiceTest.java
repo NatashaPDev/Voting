@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.natashapetrenko.voting.model.Vote;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.Month;
 
 import static ru.natashapetrenko.voting.UserTestData.USER_ID;
@@ -30,7 +30,6 @@ public class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     public void getBetweenDateTimes() {
-        assertMatch(service.getBetweenDateTimes(LocalDateTime.of(2018, Month.JANUARY, 1, 0, 0, 0),
-                LocalDateTime.of(2018, Month.JANUARY, 1, 23, 59, 59), USER_ID), VOTE1);
+        assertMatch(service.getByDate(LocalDate.of(2018, Month.JANUARY, 1), USER_ID), VOTE1);
     }
 }

@@ -3,17 +3,20 @@ package ru.natashapetrenko.voting.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @SuppressWarnings("JpaQlInspection")
 @Entity
-@Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"}, name = "votes_unique_user_datetime_idx")})
+@Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date"}, name = "votes_unique_user_date_idx")})
 public class Vote extends AbstractBaseEntity {
 
-    @Column(name = "date_time", nullable = false)
+    @Column(name = "date", nullable = false)
     @NotNull
-    private LocalDateTime dateTime;
+    private LocalDate date;
+
+    @Column(name = "time", nullable = false)
+    @NotNull
+    private LocalTime time;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -28,27 +31,28 @@ public class Vote extends AbstractBaseEntity {
     public Vote() {
     }
 
-    public Vote(Integer id, LocalDateTime dateTime, Restaurant restaurant, User user) {
+    public Vote(Integer id, LocalDate date, LocalTime time, Restaurant restaurant, User user) {
         super(id);
-        this.dateTime = dateTime;
+        this.date = date;
+        this.time = time;
         this.restaurant = restaurant;
         this.user = user;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
     public LocalDate getDate() {
-        return dateTime.toLocalDate();
+        return date;
     }
 
     public LocalTime getTime() {
-        return dateTime.toLocalTime();
+        return time;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     public User getUser() {
@@ -70,7 +74,8 @@ public class Vote extends AbstractBaseEntity {
     @Override
     public String toString() {
         return "Vote{" +
-                "dateTime=" + dateTime +
+                "date=" + date +
+                "time=" + time +
                 ", id=" + id +
                 '}';
     }

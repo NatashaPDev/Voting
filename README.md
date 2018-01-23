@@ -407,7 +407,8 @@ Adds a new vote for the restaurant from a user. If a user votes again the same d
   * **Code:** 201 <br />
     **Content:** `{
                      "id": 100035,
-                     "dateTime": "2018-01-03T10:30:00",
+                     "date":"2015-01-03",
+                     "time":"10:30:00",
                      "user": null,
                      "restaurant": {"id": 100002}
                   }`
@@ -423,7 +424,7 @@ Adds a new vote for the restaurant from a user. If a user votes again the same d
 
 * **Sample Call:**
     
-    `curl -s -X POST -d '{"dateTime":"2015-01-03T10:30","restaurant":{"id":100002}}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/voting/rest/votes --user user@yandex.ru:password`
+    `curl -s -X POST -d '{"date":"2015-01-03", "time":"10:30:00","restaurant":{"id":100002}}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/voting/rest/votes --user user@yandex.ru:password`
  
 Get dishes history
 ----
@@ -504,13 +505,15 @@ Returns JSON data about all history of votes.
     `[
            {
               "id": 100019,              
-              "dateTime": "2018-01-02T10:00:00",
+              "date":"2018-01-02",
+              "time":"10:00:00",
               "restaurant": 100002,
               "user": 100000
            },
               {
               "id": 100020,
-              "dateTime": "2018-01-02T10:00:00",
+              "date":"2018-01-02",
+              "time":"10:00:00",
               "restaurant": 100003,
               "user": 100001
            }

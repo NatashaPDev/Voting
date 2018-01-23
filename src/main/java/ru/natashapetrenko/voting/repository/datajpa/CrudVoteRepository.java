@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.natashapetrenko.voting.model.Vote;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Transactional(readOnly = true)
@@ -16,10 +16,10 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     @Transactional
     Vote save(Vote item);
 
-    @Query("SELECT m FROM Vote m ORDER BY m.dateTime DESC")
+    @Query("SELECT m FROM Vote m ORDER BY m.date DESC, m.time DESC")
     List<Vote> getAll();
 
     @SuppressWarnings("JpaQlInspection")
-    @Query("SELECT m from Vote m WHERE m.user.id=:userId AND m.dateTime BETWEEN :startDate AND :endDate")
-    List<Vote> getBetween(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("userId") int userId);
+    @Query("SELECT m from Vote m WHERE m.user.id=:userId AND m.date=:date")
+    List<Vote> getByDate(@Param("date") LocalDate date, @Param("userId") int userId);
 }

@@ -2,6 +2,7 @@ package ru.natashapetrenko.voting.util;
 
 import ru.natashapetrenko.voting.model.Vote;
 import ru.natashapetrenko.voting.to.VoteTo;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class VotesUtil {
     }
 
     private static VoteTo createVoteTO(Vote vote) {
-        return new VoteTo(vote.getId(), vote.getDateTime(), vote.getRestaurant().getId(), vote.getUser().getId());
+        return new VoteTo(vote.getId(), vote.getDate(), vote.getTime(), vote.getRestaurant().getId(), vote.getUser().getId());
     }
 
 }
